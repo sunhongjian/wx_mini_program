@@ -1,0 +1,82 @@
+<!--pages/my/my.wxml-->
+<!-- 我的页面 -->
+<!--<view class='name'>-->
+  <!--<text>{{userInfo.name}}</text>-->
+  <!--<text class='identity'>{{userInfo.role.name}}</text>-->
+<!--</view>-->
+<!--<view class='one'>-->
+  <!--<view class='two'>-->
+    <!--<view class='three'>-->
+      <!--<view class='four'>-->
+          <!--<image wx:if="userInfo.avata" src="{{userInfo.avatar}}" mode="widthFix"></image>-->
+          <!--<image wx:else src="../../img/default.jpg" mode="widthFix"></image>-->
+      <!--</view>-->
+    <!--</view>-->
+  <!--</view>-->
+<!--</view>-->
+<!--<view class='nav'>-->
+  <!--<navigator  url='/pages/result/result?title=result' open-type="redirect"><image src="../../img/1.jpg" mode="widthFix"></image>筛选</navigator>-->
+  <!--<image src="../../img/shu.png" mode="widthFix" class='shu'></image>-->
+  <!--<navigator url='/pages/my/my?title=my' class='active' open-type="redirect"><image src="../../img/22.jpg" mode="widthFix"></image>我的</navigator>-->
+<!--</view>-->
+<view class="my">
+    <!-- 个人头像部分 -->
+    <view class="my_top">
+        <view class="name">
+            <text class='h1'>{{userInfo.name}}</text>
+            <text class='span'>{{userInfo.role.name}}</text>
+        </view>
+        <view class="photo">
+            <image wx:if="userInfo.avata" src="{{userInfo.avatar}}" class="head_photo"></image>
+            <image wx:else src="../../img/default.jpg" class="head_photo" mode="widthFix"></image>
+        </view>
+    </view>
+    <!-- 个人头像部分end -->
+
+    <!-- 订单的状态 -->
+    <view class="my_bot">
+        <view class="set">
+            <!-- <button class='a' style='border-top:  1px solid #eae9ee;' bindtap="contactShow" >
+                <div class="mine_left">
+                    邀请好友
+                </div>
+                <div class="mine_right">
+                    >
+                </div>
+            </button>
+ -->            <button class='a' open-type="contact" bindcontact="handleContact">
+                <view class="mine_left">
+                    在线客服
+                </view>
+                <view class="mine_right">
+                    >
+                </view>
+            </button>
+        </view>
+        <view class="h1" wx:if="{{programOption.contact_number}}">客服电话：{{programOption.contact_number}}</view>
+        <view class="h1" wx:if="{{programOption.company_address}}">公司地址：{{programOption.company_address}}</view>
+    </view>
+    <!-- 订单的状态end -->
+
+</view>
+
+<view class="popup contact" wx:if="{{hascontcat}}">
+    <view class="popup_con">
+        <view class="popup_con_con">
+            <view class="popup_top">
+                <view><view class='h1'>邀请好友</view></view>
+                <view class="close" bindtap="contactHide">×</view>
+            </view>
+            <view class="popup_bot">
+                <view class="popup_ewm">
+                    <image src="{{userInfo.user_auth[0].spread_qr_code}}" mode="widthFix" bindtap='previewImg'></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='nav'>
+  <view bindtap="navTo" data-url='/pages/result/result?title=result' data-type="redirect"><image src="../../img/1.jpg" mode="widthFix"></image>筛选</view>
+  <image src="../../img/shu.png" mode="widthFix" class='shu'></image>
+  <view class="active"><image src="../../img/22.jpg" mode="widthFix"></image>我的</view>
+</view>

@@ -1,0 +1,12 @@
+/* pages/login/login.wxss */
+.logo{display: flex;flex-direction: column;align-items: center;margin-top:15%}
+.logo image{width:35%;}
+.logo text{font-size:36rpx;font-weight:600;color:#000;margin-top:70px;}
+.logo view{width:80px;height:5px;background:#000;margin-top:20px;}
+.anniu{ position: fixed;bottom:20%; text-align: center;width:100%;}
+.anniu button{width:55%;height:100rpx;margin:auto;line-height:100rpx;font-size: 28rpx;color:#fff;background:#00c90e;border:none;border-radius: 100px;box-shadow: 0px 7px 29.05px 5.95px rgba(0, 0, 0, 0.11);}
+.anniu button::after{border: none;border-radius: 0;}
+.protocol{font-size: 26rpx;position: fixed;bottom: 12%;width: 100%;display: flex;text-align: center;justify-content: center;align-items: center}
+.protocol_na {font-size: 26rpx;color: rgb(228, 8, 173)}
+.protocol checkbox .wx-checkbox-input{width: 26rpx;height: 26rpx}
+

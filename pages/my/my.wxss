@@ -1,0 +1,46 @@
+/* pages/my/my.wxss */
+/* .name{display: flex;flex-direction: column;align-items: center;margin-top:15%}
+.name text{color:#000;font-size:50rpx;font-weight:600;}
+.name text.identity{color:#f8712d;font-size:36rpx;font-weight:500;margin-top:10px;}
+
+.one{ width:160px;height:160px;border:10px solid #fef1ea;border-radius: 30px;background:#fef1ea;transform:rotate(45deg);margin:auto;margin-top:100px;}
+.two{width:140px;height:140px;border:10px solid #fbb795;border-radius: 30px;background:#fbb795;}
+.three{width:120px;height:120px;border:10px solid #f98951;border-radius: 30px;background:#f98951;}
+.four{width:110px;height:110px;border:5px solid #f8712d;border-radius: 30px;background:#fff;overflow: hidden}
+.one image{width: 100%;transform:rotate(-45deg);} */
+
+.my{background: #fff;height: 100%;}
+.my .my_top{display:  flex;padding: 45px 20px;align-items:  center;justify-content: space-between;}
+.my .my_top .name{width: calc(100% - 115px);}
+.my .my_top .name .h1{font-size: 20px;font-weight: 600;color: #3b3c37;display: -webkit-box;text-overflow: ellipsis;overflow: hidden;-webkit-line-clamp:1;/*! autoprefixer:off */-webkit-box-orient: vertical;/* autoprefixer:on */margin-bottom: 28px;}
+.my .my_top .name .span{color: #f8712d;font-size: 14px;}
+.my .my_top .photo{position:  relative;width: 100px;height: 100px;}
+.my .my_top .photo .head_photo{border-radius: 100px;width: 100px;height:100px;border: 2px solid  #f8712d;box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.13);background: #fff;}
+.my .my_bot{padding-bottom: 80px;}
+.my .my_bot .set{padding:0 20px;margin-bottom: 20px;}
+.my .my_bot .set .a{display: flex;border:0;background:none;align-items:  center;line-height:1 ;justify-content:  space-between;padding: 15px 0;border-bottom:  1px solid #eae9ee;border-radius: 0;}
+.my .my_bot .set .a::after{border: none;border-radius: 0;}
+.my .my_bot .set .a .mine_left{font-size: 14px;margin-left: 5px;}
+.my .my_bot .set .a .mine_right{color: #c4c4c4;font-size: 16px;}
+.my .my_bot .h1{text-align: center;font-size: 16px;color: #f8712d;padding:0 10%;}
+
+
+/*弹出框的公共样式*/
+.popup{ width:100%;height: 100%;position: fixed;top:0;z-index: 100;background: rgba(0,0,0,0.5); }
+.popup .popup_con{width:100%;height: 100%;display: flex; align-items: center;justify-content: center;}
+.popup .popup_con .popup_con_con{width:80%;background: #fff;border-radius: 10px;overflow:  hidden;}
+.popup .popup_con .popup_con_con .popup_top{text-align: center;position: relative;height: 50px;display: flex;align-items:  center;justify-content:  center;border-bottom:  1px solid #eae9ee;}
+.popup .popup_con .popup_con_con .popup_top .h1{color: #000;font-size: 16px;display: initial;}
+.popup .popup_con .popup_con_con .popup_top .close{position: absolute;right:8px;top:0px;font-size:46rpx;color:#000;}
+
+.popup .popup_con .popup_con_con .popup_bot{padding: 20px;}
+.popup .popup_con .popup_con_con .popup_bot .popup_ewm{width: 100%;text-align: center;}
+.popup .popup_con .popup_con_con .popup_bot image{width:60%;}
+
+
+
+.nav{background: #fff; position: fixed;bottom:0;box-shadow: 0px 0px 18px 0px rgba(134, 134, 134, 0.75);width:100%;display: flex;align-items: center;height:130rpx;}
+.nav view{color:#323232;font-size:28rpx;width:50%;height:130rpx;text-align: center;display: flex;flex-direction: column;align-items: center; justify-content: center;}
+.nav view image{width: 20px;margin-bottom:3px;}
+.nav view.active{color:#f8712d;}
+.nav image.shu{width:2px;height: 80% !important;}

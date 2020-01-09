@@ -1,0 +1,19 @@
+<!--pages/login/login.wxml-->
+<!-- 登录页面 -->
+<view class='logo'>
+	<image src="../../img/default.jpg" mode="widthFix"></image>
+	<!-- <text>万向数据库</text> -->
+	<!-- <view></view> -->
+</view>
+<view class='anniu'>
+	<button class="login_wxbutton" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" wx:if="{{userButton && protocolCheck}}">微信一键登录</button>
+	<button class="login_wxbutton" type="default" bindtap="wxCheck" wx:if="{{!userButton && protocolCheck}}">微信一键登录</button>
+	<button class="login_wxbutton" type="default" bindtap="agreeProtocol" wx:if="{{!protocolCheck}}">微信一键登录</button>
+	<!-- <navigator url='/pages/result/result?title=result'>微信登录</navigator> -->
+  <view class="protocol">
+    <checkbox-group bindchange="checkboxChange" >
+      <checkbox checked= "{{protocolCheck}}">请阅读并同意以下协议</checkbox>
+    </checkbox-group> 
+    <navigator class="protocol_na" url="/pages/protocol/protocol">《服务协议》</navigator>
+  </view>
+</view>

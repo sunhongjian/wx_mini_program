@@ -1,0 +1,2 @@
+.wrap {text-indent: 2em;font-size: 30rpx; padding: 30rpx}
+.wrap .title{font-size:36rpx; text-align: center;margin-bottom: 20rpx}
