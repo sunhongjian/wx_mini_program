@@ -41,15 +41,27 @@
           </view>
         </view>
         <scroll-view scroll-x="true" class='right'>
-          <view class='tr' wx:for="{{fruitList}}" wx:for-index="bigindex" wx:key="id">
+          <view class='tr'
+           wx:for="{{fruitList}}"     
+           wx:for-index="bigindex"
+           wx:key="id">
             <!-- <view wx:for="{{item.attribute_option}}" wx:for-index="attIndex" wx:for-item="cell" data-bigindex="{{bigindex}}" data-index='{{attIndex}}' data-text="{{cell.option_values}}" wx:key="id" bindtap="showContent" class="td {{cell.option_values == '无权限' ? 'active': ' '}}"><view class="td_type "><text>{{cell.option_values}}</text></view></view> -->
-            <view wx:for="{{item.attribute_option}}" wx:for-item="cell" data-bigindex="{{bigindex}}" wx:key="id" data-text="{{bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' :  cell.option_values}}" bindtap="showContent" class="td {{cell.option_values == '无权限' || (bigindex + 1 >= cover[index+1] && cover[index+1] > 0) ? 'active': '' }}">
+            <view 
+            wx:for="{{item.attribute_option}}" 
+            wx:for-item="cell" 
+            data-bigindex="{{bigindex}}" 
+            wx:key="id" 
+            data-text="{{bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' :  cell.option_values}}" 
+            bindtap="showContent" 
+            class="td {{cell.option_values == '无权限' || (bigindex + 1 >= cover[index+1] && cover[index+1] > 0) ? 'active': '' }}">
               <view class="td_type">
-                <text>{{ bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' : cell.option_values}}</text>
+                <text wx:if="{{bigindex < 15}}">{{ bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' : cell.option_values}}</text>
+                <text wx:else>
+                本平台只展示15条数据
+                </text>
               </view>
             </view>
           </view>
-
         </scroll-view>
       </view>
       <view class='tips'>-- END --</view>

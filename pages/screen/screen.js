@@ -133,11 +133,13 @@ Page({
             )
           }
         )
-        // 每页数据最多显示15列
+        // 每页数据最多显示15列, 后两列数据模糊
         let tempArr = []
-        if (res.result.product.length > 15) {      
-          for (let i = 0; i < 15; i++) {
-            tempArr.push(res.result.product[i])
+        if (res.result.product.length > 17) {      
+          for (let i = 0; i < 17; i++) {
+            if (res.result.product[i]) {
+              tempArr.push(res.result.product[i])
+            }
           }
           wx.showModal({
             title: '提示',
