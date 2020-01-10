@@ -44,3 +44,29 @@
 .nav button image{width: 20px;margin-bottom:-3px;}
 .nav button.active{background:#f8712d;color:#fff;}
 .nav image.shu{width:2px;}
+
+
+/* 二期新增功能样式 */
+
+.totle-nav{
+  margin: 0;
+  padding: 0;
+}
+.totle-nav .scroll-wrap{
+  white-space: nowrap;
+  padding: 0 5px;
+  display: inline-block;
+  font-size: 32rpx;
+  width: 100%;
+  box-sizing:border-box;
+  color: rgba(0, 0, 0, 0.8);
+}
+.totle-nav .scroll-wrap text{
+  display: inline-block;
+  padding: 5px;
+  margin: 0 5px;
+  box-sizing: border-box;
+}
+.totle-nav .scroll-wrap text.active{
+  border-bottom:3px solid rgba(255, 255, 255, 0.7);
+}

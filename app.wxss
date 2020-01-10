@@ -8,3 +8,8 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+/* 基本颜色 */
+.base-color {
+  color: #f8712d !important;
+}
