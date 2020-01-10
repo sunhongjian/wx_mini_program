@@ -133,9 +133,26 @@ Page({
             )
           }
         )
+        // 每页数据最多显示15列
+        let tempArr = []
+        if (res.result.product.length > 15) {      
+          for (let i = 0; i < 15; i++) {
+            tempArr.push(res.result.product[i])
+          }
+          wx.showModal({
+            title: '提示',
+            content: '本平台仅展示15列数据',
+            showCancel: false,
+            confirmText: "我知道了",
+            confirmColor: '#f8712d'
+          })
+          console.log(tempArr)
+        } else {
+          tempArr = res.result.product
+        }
         this.setData({
           fruitTypeList: res.result.attribute,
-          fruitList: res.result.product
+          fruitList: tempArr
         })
       } else {
         app.showModal(res.error.message)
