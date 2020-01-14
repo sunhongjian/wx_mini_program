@@ -15,6 +15,7 @@ Page({
       { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSeKnR2W70kYmndELJ9tWdag6IVgS2H1Pp2xAzEmcR334OfA_Lq' },
       { url: 'http://pic1.win4000.com/wallpaper/2/5911208a1ab3a.jpg' }
     ],
+    activeCol: 'name1', // 默认打开的
     minAnimationData: {}, // 左侧滑块动画
     maxAnimationData: {}, // 右侧滑块动画
     startX: {}, // 左侧滑块 开始滑动距离左侧距离

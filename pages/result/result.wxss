@@ -1,10 +1,5 @@
 /* pages/result/result.wxss */
 
-.neirong {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
 .one {
   width: 100%;
 }
@@ -162,14 +157,13 @@
 }
 
 .nav .left {
-  width: 65%;
+  width: 50%;
   display: flex;
+  border-top: 1px solid #f0f0f0;
 }
 
 .nav .left button {
-  border-top: 1px solid #f0f0f0;
-  border-right: 1px solid #f0f0f0;
-  width: 50%;
+  width: 100%;
   color: #2b2b2b;
   font-size: 28rpx;
   line-height: 60px;
@@ -184,7 +178,7 @@
 }
 
 .nav .right {
-  width: 45%;
+  width: 50%;
 }
 
 .nav .right view {
@@ -235,13 +229,31 @@
 
 /* 跑马灯样式 */
 .marquee {
+  background-color: #F6F6F6;
+}
+.marquee .marquee-item {
   height: 86rpx;
   font-size: 28rpx;
   padding: 24rpx;
-  background-color: #F6F6F6;
 }
-.marquee .content {
-  
+.marquee-left {
+  flex: 1;
+}
+.marquee-right {
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27rpx;
+  color: #F75604; 
+}
+.marquee-right-item {
+  height: 50rpx;
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1rpx solid #E1E1E1;
 }
 .marquee .content text{
   color: #666666;

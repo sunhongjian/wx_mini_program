@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-      "range-slider": "../component/range-slider"
+      "range-slider": "../components/range-slider/range-slider",
+        "i-collapse": "../components/collapse/index",
+        "i-collapse-item": "../components/collapse-item/index"
   }
 }
