@@ -1,33 +1,69 @@
 <!--pages/result/result.wxml-->
 <!-- 筛选结果页面 -->
 <view class="neirong">
+  <!-- 首页轮播图 Start-->
 
-	<view class='one' wx:for="{{nList}}" wx:key="id" >
-		<text class='one_name'>{{item.name}}</text>
-		<view class='two'>
-			<wxs module="m1">
-				function fn(arr, arg) {
-				  var result = arr.join(',').indexOf(arg)
-				  return result;
-				}
-				module.exports.fn= fn;
-			</wxs>
-			<view wx:for="{{item.attribute}}" wx:for-item="attribute" wx:for-index="attrIndex" wx:key="id" >
-				<!-- 单选 -->
-				<view class='list' wx:if="{{attribute.type === 1 || attribute.type === 2}}">
-					<view class='two_name' bindtap='selectShow' data-index='{{index}}'  data-attrIndex='{{attrIndex}}'>
-						<text class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}">{{attribute.name}}</text>
-						<view class="yx {{ attribute.selected ? '' : 'active'}}"><text>{{params[attribute.id].text ? params[attribute.id].text : '不限'}}</text>
-							<image src="../../img/jt.png" mode="widthFix"></image>
-						</view>
-					</view>
-					<view class='option' wx:if="{{attribute.selected}}" >
-						 <view class="{{params[attribute.id].option_id ? '' : 'active'}}" bindtap="itemReset" data-index='{{index}}'  data-attrIndex='{{attrIndex}}'><text>不限</text></view>
-						<view wx:for="{{attribute.option}}" class="{{option.selected ? 'active' : ''}}" wx:for-item="option" wx:for-index="optionIndex" wx:key="id"  data-index='{{index}}' data-optionIndex="{{optionIndex}}" data-attrIndex='{{attrIndex}}' data-option='{{option}}' bindtap="checkChange"><text>{{option.key_name}}</text></view>
-					</view>
-				</view>
-				<!-- 多选 -->
-				<!-- <view class='list' wx:if="{{attribute.type === 2}}" >
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <block wx:for="{{movies}}" wx:for-index="index">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 首页轮播图 End -->
+  <!-- 数据滚动 Start -->
+  <swiper class="marquee" autoplay="true" vertical="true" interval="3000" circular="true">
+      <block wx:for="{{news}}" wx:for-index="index">
+      <swiper-item class="content">
+        <view class="flex-wrp"></view>
+        <view>
+         <text class="text">{{item}}</text>
+        </view>
+        <view>
+        <text>更多</text>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 数据滚动 End -->
+  <!-- Tab菜单 Start -->
+  <view class="subnav">
+    <view class="{{tabIndex == 1 ? 'active' : ''}}" bindtap="tabClick">非银行抵押</view>
+    <view class="{{tabIndex == 2 ? 'active' : ''}}" bindtap="tabClick">银行抵押</view>
+  </view>
+  <!-- Tab菜单 End -->
+  <view class='one' wx:for="{{nList}}" wx:key="id">
+    <text class='one_name'>{{item.name}}</text>
+    <view class='two'>
+      <wxs module="m1">
+        function fn(arr, arg) {
+          var result = arr.join(',').indexOf(arg)
+          return result;
+        }
+        module.exports.fn = fn;
+      </wxs>
+      <view wx:for="{{item.attribute}}" wx:for-item="attribute" wx:for-index="attrIndex" wx:key="id">
+        <!-- 单选 -->
+        <view class='list' wx:if="{{attribute.type === 1 || attribute.type === 2}}">
+          <view class='two_name' bindtap='selectShow' data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
+            <text class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}">{{attribute.name}}</text>
+            <view class="yx {{ attribute.selected ? '' : 'active'}}">
+              <text>{{params[attribute.id].text ? params[attribute.id].text : '不限'}}</text>
+              <image src="../../img/jt.png" mode="widthFix"></image>
+            </view>
+          </view>
+          <view class='option' wx:if="{{attribute.selected}}">
+            <view class="{{params[attribute.id].option_id ? '' : 'active'}}" bindtap="itemReset" data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
+              <text>不限</text>
+            </view>
+            <view wx:for="{{attribute.option}}" class="{{option.selected ? 'active' : ''}}" wx:for-item="option" wx:for-index="optionIndex" wx:key="id" data-index='{{index}}' data-optionIndex="{{optionIndex}}" data-attrIndex='{{attrIndex}}' data-option='{{option}}'
+              bindtap="checkChange">
+              <text>{{option.key_name}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- 多选 -->
+        <!-- <view class='list' wx:if="{{attribute.type === 2}}" >
 					<view class='two_name' bindtap='selectShow' data-index='{{index}}'  data-attrIndex='{{attrIndex}}'>
 						<view class='two_n'>{{attribute.name}}</view>
 						<view class="yx {{ attribute.selected ? '' : 'active'}}"><text> {{params[attribute.id].text ? params[attribute.id].text : '不限'}}</text>
@@ -40,40 +76,42 @@
 					</view>
 				</view> -->
 
-				<!-- 滑块 -->
-				<view class='list'  wx:if="{{attribute.type === 3}}" >
-					<view class='two_name' bindtap='selectShow' data-index='{{index}}'  data-attrIndex='{{attrIndex}}'>
-						<view class='two_n'>{{attribute.name}} <text>/{{attribute.unit}}</text> </view>
-                        <view class="yx {{ attribute.selected ? '' : 'active'}}"><text>{{params[attribute.id].title ? params[attribute.id].title : '不限'}}</text>
-                            <image src="../../img/jt.png" mode="widthFix"></image>
-                        </view>
-					</view>
-					<view class="date" wx:if="{{attribute.selected }}">
-						<text>{{params[attribute.id].text ? params[attribute.id].text : attribute.min + ' - ' +  attribute.max }}{{attribute.unit}}</text>
-						<!-- <text>滑动选择</text> -->
-					</view>
-					<view class='twoSlider' wx:if="{{attribute.selected }}">
-						<range-slider width='600' height='80' block-size='50' min='{{attribute.min}}' max='{{attribute.max}}' options="{{attribute}}" bind:rangechange='onRangeChange' backgroundColor="#cecacb" activeColor="#f26a36">
-						    <view slot='minBlock' class='range-slider-block'></view> //左边滑块的内容
-						    <view slot='maxBlock' class='range-slider-block'></view> //右边滑块的内容
-						  </range-slider>
-					</view>
-				</view>
-				<!-- 开关 -->
-				<view class="list" wx:if="{{attribute.type == 5}}">
-					<view class='two_name'>
-						<view class='two_n'>{{attribute.name}}</view>
-						<view class="yx">
-							<switch color="#f26a36" checked="{{params[attribute.id].key_name ? params[attribute.id].key_name : attribute.option.key_name}}" data-index='{{index}}'  data-attrIndex='{{attrIndex}}' data-option = "{{attribute}}" bindchange="switchChange"></switch>
-						</view>
-					</view>
-				</view>
-			</view>
+        <!-- 滑块 -->
+        <view class='list' wx:if="{{attribute.type === 3}}">
+          <view class='two_name' bindtap='selectShow' data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
+            <view class='two_n'>{{attribute.name}}
+              <text>/{{attribute.unit}}</text> </view>
+            <view class="yx {{ attribute.selected ? '' : 'active'}}">
+              <text>{{params[attribute.id].title ? params[attribute.id].title : '不限'}}</text>
+              <image src="../../img/jt.png" mode="widthFix"></image>
+            </view>
+          </view>
+          <view class="date" wx:if="{{attribute.selected }}">
+            <text>{{params[attribute.id].text ? params[attribute.id].text : attribute.min + ' - ' +  attribute.max }}{{attribute.unit}}</text>
+            <!-- <text>滑动选择</text> -->
+          </view>
+          <view class='twoSlider' wx:if="{{attribute.selected }}">
+            <range-slider width='600' height='80' block-size='50' min='{{attribute.min}}' max='{{attribute.max}}' options="{{attribute}}" bind:rangechange='onRangeChange' backgroundColor="#cecacb" activeColor="#f26a36">
+              <view slot='minBlock' class='range-slider-block'></view> //左边滑块的内容
+              <view slot='maxBlock' class='range-slider-block'></view> //右边滑块的内容
+            </range-slider>
+          </view>
+        </view>
+        <!-- 开关 -->
+        <view class="list" wx:if="{{attribute.type == 5}}">
+          <view class='two_name'>
+            <view class='two_n'>{{attribute.name}}</view>
+            <view class="yx">
+              <switch color="#f26a36" checked="{{params[attribute.id].key_name ? params[attribute.id].key_name : attribute.option.key_name}}" data-index='{{index}}' data-attrIndex='{{attrIndex}}' data-option="{{attribute}}" bindchange="switchChange"></switch>
+            </view>
+          </view>
+        </view>
+      </view>
 
 
-		</view>
+    </view>
 
-	</view>
+  </view>
 
 
 </view>
@@ -82,20 +120,12 @@
 
 <!-- 底部菜单 -->
 <view class='nav'>
-	<view class='left'>
-		<button open-type="contact" bindcontact="handleContact" >在线客服</button>
-		<button bindtap="ResetFilter">重置</button>
-	</view>
-	<view class='right'>
-		<!-- <navigator url='/pages/screen/screen?title=screen'>共计23项目</navigator> -->
-		<view bindtap="navTo" data-url="/pages/screen/screen?ids={{ids}}" data-type="back" class="{{isReq ? '':'Gray'}}">查看{{count}}个结果</view>
-	</view>
+  <view class='left'>
+    <button open-type="contact" bindcontact="handleContact">在线客服</button>
+    <button bindtap="ResetFilter">重置</button>
+  </view>
+  <view class='right'>
+    <!-- <navigator url='/pages/screen/screen?title=screen'>共计23项目</navigator> -->
+    <view bindtap="navTo" data-url="/pages/screen/screen?ids={{ids}}" data-type="back" class="{{isReq ? '':'Gray'}}">查看{{count}}个结果</view>
+  </view>
 </view>
-
-<!--顶部菜单-->
-<view class="subnav">
-    <view class="{{tabIndex == 1 ? 'active' : ''}}"  bindtap="tabClick">抵押</view>
-    <view class="{{tabIndex == 2 ? 'active' : ''}}" bindtap="tabClick">信用<text style="font-size: 12px"> (敬请期待)</text></view>
-</view>
-
-
