@@ -1,0 +1,70 @@
+.flex-wrp {
+  display: flex;
+}
+.i-collapse-item {
+  margin-bottom: 20rpx;
+}
+
+.i-collapse-item-sub-title {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666666;
+  padding: 18rpx;
+}
+.i-collapse-item-title {
+  flex: 0.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40rpx;
+  color: #F7651B;
+  height: 140rpx;
+}
+.i-collapse-item-title .border {
+  height: 100rpx;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-right: 1rpx solid #F0F0F0;
+}
+
+.i-collapse-item-title-wrap {
+  border: 2rpx solid #F0F0F0;
+  padding: 20rpx;
+  height: 140rpx;
+  position: relative;
+}
+
+.i-collapse-item-content {
+  padding: 6px;
+  display: none;
+}
+
+.i-collapse-item-show-content {
+  display: block;
+}
+
+.i-collapse-item-arrow {
+  font-size: 20rpx;
+  color: #F7651B;
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.i-collapse-item-arrow-show {
+  font-size: 20rpx;
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(-90deg);
+  color: #F7651B;
+}
+
+.abs-icon {
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+}
+.abs-icon text {
+  font-size: 23rpx;
+  color: #F7651B;
+}

@@ -8,6 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    news: ['平台更新万向数据库数据批量更新批量平台更 新万向数据库更新万向数据库平台更新万向数据库数据批量更新批量平台更 新万向数据库更新万向数据库平台更新万向数据库数据批量更新批量平台更 新万向数据库更新万向数据库平台更新万向数据库数据批量更新批量平台更 新万向数据库更新万向数据库平台更新万向数据库数据批量更新批量平台更 新万向数据库更新万向数据库平台更新万向数据库数据批量更新批量平台更 新万向数据库更新万向数据库', '祝贺新系统成功上线', '新年快乐'], // 消息数组
+    movies: [
+      { url: 'http://static.runoob.com/images/demo/demo4.jpg' },
+      { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSBlzF4v4_Ao3tPG22KxDTnhCEpHET4z7RZUdv9MVUStSqPY6F-' },
+      { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSeKnR2W70kYmndELJ9tWdag6IVgS2H1Pp2xAzEmcR334OfA_Lq' },
+      { url: 'http://pic1.win4000.com/wallpaper/2/5911208a1ab3a.jpg' }
+    ],
+    activeCol: 'name1', // 默认打开的
     minAnimationData: {}, // 左侧滑块动画
     maxAnimationData: {}, // 右侧滑块动画
     startX: {}, // 左侧滑块 开始滑动距离左侧距离

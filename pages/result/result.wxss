@@ -1,187 +1,205 @@
 /* pages/result/result.wxss */
-.neirong{
-    padding-top:60px;
-    padding-bottom:60px;
+
+.neirong {
+  padding-bottom: 60px;
+}
+.swiper {
+  width: 100%;
 }
 .one {
-	width: 100%;
+  width: 100%;
 }
 
 .one .one_name {
-	font-size: 28rpx;
-	color: #f8651b;
-	line-height: 40px;
-	padding: 0 20px;
+  font-size: 28rpx;
+  color: #F75604;
+  line-height: 40px;
+  padding: 0 20px;
 }
 
 .one .two {
-	border-top: 1px solid #f0f0f0;
-	margin-bottom: 20px;
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 20px;
 }
 
 .one .two .list {
-	border-bottom: 1px solid #f0f0f0;
-	padding: 10px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 20px;
 }
 
 .one .two .list .two_name {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .one .two .list .two_name .two_n {
-	font-size: 32rpx;
-	color: #111111;
+  font-size: 32rpx;
+  color: #111;
 }
 
 .one .two .list .two_name .two_n text {
-	color: #b6b6b6;
-	font-size: 28rpx;
-	margin-left: 3px;
+  color: #b6b6b6;
+  font-size: 28rpx;
+  margin-left: 3px;
 }
 
 .one .two .list .two_name .yx {
-	font-size: 28rpx;
-	color: #808080;
-	width: 108px;
-	display: flex;
-	align-items: center;
+  font-size: 28rpx;
+  color: #808080;
+  width: 108px;
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
 }
 
 .one .two .list .two_name .yx text {
-	font-size: 28rpx;
-	color: #808080;
-	width: 85px;
-	margin-right: 8px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-	text-align: right;
+  font-size: 28rpx;
+  color: #808080;
+  width: 85px;
+  margin-right: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: right;
 }
 
 .one .two .list .two_name .yx image {
-	width: 15px;
+  width: 15px;
 }
 
 .one .two .list .two_name .yx.active text {
-	color: #f8651b;
+  color: #F75604;
 }
 
 .one .two .list .two_name .yx.active image {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .one .two .list .option {
-	display: flex;
-	/* justify-content: space-between; */
-	flex-wrap: wrap;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
 }
 
 .one .two .list .option view {
-	width:calc(31% - 16px);
-font-size:28rpx;
-color:#5c5c5c;
-border:1px solid #f0f0f0;
-text-align:center;
-height:25px;
-line-height:15px;
-margin-top:10px;
-margin-right:calc(3.5% - 3px);
-padding:10px 8px;
-display:flex;
-align-items:center;
-justify-content:center;
-
-
+  width: calc(31% - 16px);
+  font-size: 28rpx;
+  color: #5c5c5c;
+  border: 1px solid #f0f0f0;
+  text-align: center;
+  height: 25px;
+  line-height: 15px;
+  margin-top: 10px;
+  margin-right: calc(3.5% - 3px);
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .one .two .list .option view text {
-  overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
-.one .two .list .option view:nth-child(3n){
-	margin-right: 0;
+
+.one .two .list .option view:nth-child(3n) {
+  margin-right: 0;
 }
 
 .one .two .list .option view.active {
-	color: #f8651b;
-	border: 1px solid #f8651b;
+  color: #F75604;
+  border: 1px solid #F75604;
 }
+
 .zy-slider {
-	width: 100%;
+  width: 100%;
 }
+
 .twoSlider {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .date {
-	display:flex;flex-direction: column;justify-content: center;
-	margin-top:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .date text {
-	font-size: 36rpx;
-	color: #F8712C;
-	text-align: center;
-	font-weight:600;
+  font-size: 36rpx;
+  color: #f8712c;
+  text-align: center;
+  font-weight: 600;
 }
 
 .date text:nth-child(2) {
-	font-size: 26rpx;
-	color: #7F7F7F;
-	text-align: center;
-	font-weight:500;
-	margitn-top:5px;
+  font-size: 26rpx;
+  color: #7f7f7f;
+  text-align: center;
+  font-weight: 500;
+  margitn-top: 5px;
 }
 
 /* 底部菜单 */
+
 .nav {
-	position: fixed;
-	bottom: 0;
-	background: #fff;
-	width: 100%;
-	display: flex;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  width: 100%;
+  display: flex;
 }
 
 .nav .left {
-	width: 65%;
-	display: flex;
+  width: 50%;
+  display: flex;
+  border-top: 1px solid #f0f0f0;
 }
 
 .nav .left button {
-	border-top: 1px solid #f0f0f0;
-	border-right: 1px solid #f0f0f0;
-	width: 50%;
-	color: #2b2b2b;
-	font-size: 28rpx;
-	line-height: 60px;
-	text-align: center;
-	border-radius:0;
-	background:none;
+  width: 100%;
+  color: #2b2b2b;
+  font-size: 28rpx;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 0;
+  background: none;
 }
-.nav .left button::after{border: none;border-radius: 0;}
+
+.nav .left button::after {
+  border: none;
+  border-radius: 0;
+}
+
 .nav .right {
-	width: 45%;
+  width: 50%;
 }
 
 .nav .right view {
-	width: 100%;
-	background: #f8651b;
-	font-size: 28rpx;
-	color: #fff;
-	line-height: 60px;
-	text-align: center;
+  width: 100%;
+  background: #F75604;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 60px;
+  text-align: center;
 }
+
 .nav .right view.Gray {
-	background: #919191;
+  background: #919191;
 }
+
 .range-slider-block {
   border-radius: 50%;
   width: 100%;
@@ -193,6 +211,57 @@ justify-content:center;
 .range-text {
   font-size: 18px;
 }
-.subnav{width:100%;display: flex;background: #fff;position: fixed;top:0;left:0;}
-.subnav view{flex:1;text-align: center;font-size: 14px;padding: 15px 0;display:block;border-bottom: 1px solid #c4c4c4;}
-.subnav view.active{color: #f8651b;border-bottom: 2px solid #f8651b;}
+
+.subnav {
+  width: 100%;
+  display: flex;
+  background: #fff;
+}
+
+.subnav view {
+  flex: 1;
+  text-align: center;
+  font-size: 30rpx;
+  padding: 15px 0;
+  display: block;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.subnav view.active {
+  background-color: #F75604;
+  color: #fff;
+  border-bottom: 2px solid #F75604;
+}
+
+/* 跑马灯样式 */
+.marquee {
+  background-color: #F6F6F6;
+}
+.marquee .marquee-item {
+  height: 86rpx;
+  font-size: 28rpx;
+  padding: 24rpx;
+}
+.marquee-left {
+  flex: 1;
+}
+.marquee-right {
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27rpx;
+  color: #F75604; 
+}
+.marquee-right-item {
+  height: 50rpx;
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1rpx solid #E1E1E1;
+}
+.marquee .content text{
+  color: #666666;
+  line-height: 43rpx;
+}
