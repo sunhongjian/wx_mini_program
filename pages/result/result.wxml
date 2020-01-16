@@ -24,7 +24,7 @@
     </view>
     <view class="marquee-right">
       <view class="marquee-right-item">
-        <text>更多</text>
+        <navigator url="../news/newsPage">更多</navigator>
       </view>
     </view>
   </view>

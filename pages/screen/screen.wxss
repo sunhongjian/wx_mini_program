@@ -175,7 +175,6 @@
 }
 
 .nav button {
-  color: #323232;
   font-size: 28rpx;
   width: 100%;
   height: 130rpx;
@@ -187,6 +186,7 @@
   padding-top: 20rpx;
   background: none;
   border-radius: 0;
+  color: #F7651B;
 }
 
 .nav button::after {
@@ -198,10 +198,6 @@
   margin-bottom: -3px;
 }
 
-.nav button.active {
-  background: #f8712d;
-  color: #fff;
-}
 
 .nav image.shu {
   width: 2px;
@@ -214,6 +210,8 @@
   padding: 0;
   overflow: hidden;
   white-space: nowrap;
+   position: relative;
+   height: 60rpx;
 }
 
 ::-webkit-scrollbar {
@@ -241,4 +239,20 @@
 
 .totle-nav .scroll-wrap text.active {
   border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+}
+.totle-nav .dec-image {
+  
+  position: absolute;
+  right: 0;
+  bottom: 0rpx;
+  width: 80rpx;
+  height: 60rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8
+}
+.totle-nav .dec-image image {
+  width: 38rpx;
 }

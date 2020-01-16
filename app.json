@@ -5,7 +5,8 @@
     "pages/screen/screen",
     "pages/my/my",
     "pages/index/index",
-    "pages/protocol/protocol"
+    "pages/protocol/protocol",
+    "pages/news/newsPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

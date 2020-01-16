@@ -1,0 +1,7 @@
+<!--pages/news/newsPage.wxml-->
+<!-- 消息列表 -->
+<view class="news-box">
+  <view class="newsCard" wx:for="{{newsList}}" wx:key="id">
+    <text class="content">{{item.content}}</text>
+  </view>
+</view>
