@@ -1,4 +1,4 @@
-var host = 'api.wanxiangph.com/'
+var host = 'wxapi.meisenlianchuang.com'
 var config = {
   // 登录地址，用于获取Key
   loginUrl: `https://${host}/api/login`,
@@ -22,6 +22,15 @@ var config = {
   logoutUrl: `https://${host}/api/logout`,
   // 通用接口
   userUrl: `https://${host}/api/user`,
+  // 二期开发新增
+  // 排序列表
+  sortUrl: `https://${host}/api/sort/index`,
+  // 信息更新
+  messageUrl: `https://${host}/api/message/index`,
+  // 轮播图
+  bannerUrl: `https://${host}/api/banner/index`,
+  // 轮播图详情
+  bannerDetailUrl: `https://${host}/api/banner/detail/`,
 };
 
 module.exports = config

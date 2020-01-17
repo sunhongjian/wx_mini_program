@@ -6,7 +6,8 @@
     "pages/my/my",
     "pages/index/index",
     "pages/protocol/protocol",
-    "pages/news/newsPage"
+    "pages/news/newsPage",
+    "pages/banner/banner"
   ],
   "window": {
     "backgroundTextStyle": "light",

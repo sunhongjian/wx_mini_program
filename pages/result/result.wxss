@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .one .two .list .two_name .two_n {
@@ -118,6 +119,10 @@
   border: 1px solid #F75604;
 }
 
+.two .wenhao {
+  width: 26rpx;
+  margin-left: 10rpx;
+}
 .zy-slider {
   width: 100%;
 }

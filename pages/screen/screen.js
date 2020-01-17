@@ -7,30 +7,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    phoneList: [], // 电话列表
+    showModal: false,
     flag: 1, // 切换class标志
-    category: [{
-      id: 1,
-      name: "新闻"
-    }, {
+    category: [], // 筛选数据
+    checkColums: [
+      {
+        id: 1,
+        name: '产品名称'
+      },
+      {
         id: 2,
-      name: "开心一笑"
-    }, {
+        name: '资方名称'
+      },
+      {
         id: 3,
-      name: "天气"
-    }, {
-        id: 4,
-      name: "周边"
-    }, {
-        id: 5,
-      name: "黄历查询"
-      }, {
-        id: 6,
-      name: "图片笑话"
-      }, {
-        id: 7,
-      name: "更多"
-    }], // 筛选数据
-    wHeight: 'height: calc(100vh - 70px);',
+        name: '联系方式'
+      }
+    ], // 已选头部
+    checkData: [],
     sort: -1,
     sequence: true,
     option: {},
@@ -41,12 +36,13 @@ Page({
     fruitTypeList: [],
     fruitList: []
   },
-  onLoad: function(opt) {
+  onLoad: function (opt) {
 
-    app.isLogin(function(auth) {
+    app.isLogin(function (auth) {
       // console.log(auth)
     });
-
+    // 二期新增功能,调用排序接口
+    this.getSortList()
     this.getAttribute(opt)
     this.getCover();
     this.getOprogramOption();
@@ -77,7 +73,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     let query = wx.createSelectorQuery();
     var FilterData = wx.getStorageSync('Categor_Filter');
     if (JSON.stringify(FilterData) !== "{}") {
@@ -97,6 +93,21 @@ Page({
     if (e.currentTarget.dataset.text.length >= 15) {
       app.showModal(e.currentTarget.dataset.text, '')
     }
+  },
+  // 获取排序列表
+  getSortList() {
+    let params = {}
+    app.requestLoading(config.sortUrl, 'get', params, '加载中', res => {
+      if (res.success) {
+        this.setData({
+          category: res.result
+        })
+      } else {
+        app.showModal(res.error.message)
+      }
+    }, function () {
+      app.error()
+    })
   },
   /*
    * 获取筛选过产品
@@ -133,9 +144,25 @@ Page({
             )
           }
         )
+        res.result.product.forEach(n => {
+          n.checked = []
+          n.checked.push({
+            id: 1,
+            value: n.name
+          },
+            {
+              id: 2,
+              value: n.description
+            },
+            {
+              id: 3,
+              value: n.phone
+            },
+          )
+        })
         // 每页数据最多显示15列, 后两列数据模糊
         let tempArr = []
-        if (res.result.product.length > 17) {      
+        if (res.result.product.length > 17) {
           for (let i = 0; i < 17; i++) {
             if (res.result.product[i]) {
               tempArr.push(res.result.product[i])
@@ -159,7 +186,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function() {
+    }, function () {
       app.error()
     })
   },
@@ -173,7 +200,7 @@ Page({
         this.setData({
           cover: res.result
         })
-      } else {}
+      } else { }
     })
   },
   /*
@@ -189,7 +216,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function() {
+    }, function () {
       app.error()
     })
   },
@@ -209,7 +236,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function() {
+    }, function () {
       app.error()
     })
   },
@@ -246,6 +273,22 @@ Page({
     this.setData({
       flag: e.currentTarget.dataset.flagindex
     });
+  },
+  submit(event) {
+    let phoneList = event.currentTarget.dataset.phone
+    console.log(phoneList)
+    this.setData({
+      showModal: true,
+      phoneList
+    })
+  },
+  preventTouchMove: function () {
+
+  },
+  go: function () {
+    this.setData({
+      showModal: false
+    })
   },
   /*
    * 排序
