@@ -303,5 +303,12 @@ Page({
       this.getProduct(this.data.option, sequence)
     }
 
+  },
+  // 拨打电话
+  callHandle(e) {
+    console.log(e.currentTarget.dataset.phone)
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.phone,
+    })
   }
 })

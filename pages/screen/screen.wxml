@@ -71,7 +71,7 @@
 </view>
 
 <view class='nav flex-wrp'>
-  <navigator url="../result/result?title=result" style="flex: 1" class="nav-item">
+  <navigator url="../contact/contact" open-type="redirect" style="flex: 1" class="nav-item">
     <view class="flex-wrp">
       <view class="flex-wrp-center" style="margin-top: -5px">
         <image class="icon-style" src="../../img/22.jpg" mode="widthFix"></image>
@@ -118,7 +118,7 @@
             </view>
           </view>
           <view class="flex-wrp-center" style="width: 80rpx">
-            <image style="width: 64rpx" class="icon-style" src="../../img/dianhua2@2x.png" mode="widthFix"></image>
+            <image data-phone="{{item.phone}}" bindtap="callHandle" style="width: 64rpx" class="icon-style" src="../../img/dianhua2@2x.png" mode="widthFix"></image>
           </view>
         </view>
       </view>

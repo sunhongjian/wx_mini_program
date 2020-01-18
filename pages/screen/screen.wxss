@@ -196,6 +196,7 @@
   white-space: nowrap;
   position: relative;
   height: 60rpx;
+  border-bottom: 1px solid #F0F0F0;
 }
 
 ::-webkit-scrollbar {

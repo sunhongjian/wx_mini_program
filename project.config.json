@@ -88,6 +88,12 @@
 					"pathName": "pages/news/newsPage",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/contact/contact",
+					"pathName": "pages/contact/contact",
+					"scene": null
 				}
 			]
 		}
