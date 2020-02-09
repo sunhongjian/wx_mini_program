@@ -5,6 +5,18 @@
 }
 .swiper {
   width: 100%;
+  height: 447rpx;
+}
+.swiper-item {
+   position: relative;
+}
+.pos-dingwei {
+  color: #fff;
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  z-index: 999;
+  font-size: 28rpx;
 }
 .one {
   width: 100%;
@@ -32,6 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .one .two .list .two_name .two_n {
@@ -118,6 +131,10 @@
   border: 1px solid #F75604;
 }
 
+.two .wenhao {
+  width: 26rpx;
+  margin-left: 10rpx;
+}
 .zy-slider {
   width: 100%;
 }
@@ -241,6 +258,7 @@
   height: 86rpx;
   font-size: 28rpx;
   padding: 24rpx;
+  position: relative;
 }
 .marquee-left {
   flex: 1;
@@ -264,4 +282,12 @@
 .marquee .content text{
   color: #666666;
   line-height: 43rpx;
+}
+.marquee .content .time{
+  color: #999999;
+  font-size: 28rpx;
+  position: absolute;
+  right: 0rpx;
+  bottom: 0rpx;
+  background-color: #F6F6F6;
 }

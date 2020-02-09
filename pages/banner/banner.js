@@ -1,20 +1,33 @@
-// pages/news/newsPage.js
-var app = getApp();
-var config = require('../../config.js');
+var app = getApp(),
+  defaultParams = {}, // 保存默认筛选项
+  config = require('../../config.js');
+// pages/banner/banner.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    newsList: []
+    richText: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad (options) {
-    this.getNews();
+  onLoad(options) {
+    console.log(options)
+    app.request(`${config.bannerDetailUrl}${options.id}`, 'get', {
+    }, res => {
+      if (res.success) {
+        this.setData({
+          richText: res.result.detail,
+        })
+      } else {
+        app.showModal(res.error.message)
+      }
+    }, function () {
+      app.error()
+    })
   },
 
   /**
@@ -64,19 +77,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getNews() {
-    app.request(config.messageUrl, 'get', {
-    }, res => {
-      if (res.success) {
-        this.setData({
-          newsList: res.result,
-        })
-      } else {
-        app.showModal(res.error.message)
-      }
-    }, function () {
-      app.error()
-    }) 
   }
 })

@@ -1,6 +1,5 @@
 <view id="{{name}}" class="i-class i-collapse-item ">
   <view class="i-collapse-item-title-wrap" bindtap="trigger">
-
     <view class="flex-wrp">
       <view class="i-collapse-item-title">
         <view class="border">

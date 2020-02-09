@@ -13,3 +13,11 @@
   color: #333333;
   font-size: 30rpx;
 }
+.newsCard .news-bot {
+  margin-top: 10rpx;
+  color: #999999;
+  font-size: 28rpx;
+}
+.newsCard .news-bot text {
+  flex: 1;
+}

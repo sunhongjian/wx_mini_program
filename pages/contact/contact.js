@@ -1,20 +1,18 @@
-// pages/news/newsPage.js
-var app = getApp();
-var config = require('../../config.js');
+// pages/contact/contact.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    newsList: []
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad (options) {
-    this.getNews();
+  onLoad: function (options) {
+
   },
 
   /**
@@ -64,19 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getNews() {
-    app.request(config.messageUrl, 'get', {
-    }, res => {
-      if (res.success) {
-        this.setData({
-          newsList: res.result,
-        })
-      } else {
-        app.showModal(res.error.message)
-      }
-    }, function () {
-      app.error()
-    }) 
   }
 })

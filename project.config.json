@@ -65,6 +65,35 @@
 					"id": -1,
 					"name": "pages/news/newsPage",
 					"pathName": "pages/news/newsPage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/screen/screen",
+					"pathName": "pages/screen/screen",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/result/result",
+					"pathName": "pages/result/result",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/news/newsPage",
+					"pathName": "pages/news/newsPage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/contact/contact",
+					"pathName": "pages/contact/contact",
+					"query": "",
 					"scene": null
 				}
 			]

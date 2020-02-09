@@ -35,11 +35,10 @@ Component({
         trigger(e) {
             const data = this.data;
             if (data.accordion) {
+              this.setData({
+                showContent: data.showContent ? '' : 'i-collapse-item-show-content'
+              });
                 this.triggerEvent('collapse', {name: data.name}, {composed: true, bubbles: true});
-            } else {
-                this.setData({
-                    showContent: data.showContent ? '' : 'i-collapse-item-show-content'
-                });
             }
         },
     }

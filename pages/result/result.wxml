@@ -4,9 +4,12 @@
   <!-- 首页轮播图 Start-->
 
   <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
-    <block wx:for="{{movies}}" wx:for-index="index">
-      <swiper-item>
-        <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
+    <block wx:for="{{banners}}" wx:for-index="index">
+      <swiper-item data-id="{{item.id}}" data-type="{{item.type}}" bindtap="goBannerDetail">
+       <view class="pos-dingwei">
+       <image style="width: 22rpx"src="../../img/weizhi.png" mode="widthFix" />
+       <text>青岛</text></view>
+        <image style="width: 100%" src="{{item.image}}" class="slide-image" mode="aspectFill" />
       </swiper-item>
     </block>
   </swiper>
@@ -17,7 +20,8 @@
       <swiper class="marquee-item" autoplay="true" vertical="true" interval="3000" circular="true">
         <block wx:for="{{news}}" wx:for-index="index">
           <swiper-item class="content">
-            <text class="text">{{item}}</text>
+            <text class="text">{{item.content}}</text>
+            <text class="time">{{item.create_time}}</text>
           </swiper-item>
         </block>
       </swiper>
@@ -39,7 +43,7 @@
   <view class="caption-wrap">
     <i-collapse name="{{activeCol}}" accordion>
       <view class='one' wx:for="{{nList}}" wx:key="id">
-        <i-collapse-item name="name{{item.id}}" subTitle="坐落区域、房产用途、面积、登记时间<3个月、房龄、土地取得方式、房产取得方式等" title="{{item.name}}" i-class-title="collapse-item-title" i-class-content="collapse-item-content">
+        <i-collapse-item name="name{{item.id}}" subTitle="{{item.temp}}" title="{{item.name}}" i-class-title="collapse-item-title" i-class-content="collapse-item-content">
           <view slot="content" class='two'>
             <wxs module="m1">
               function fn(arr, arg) {
@@ -52,7 +56,8 @@
               <!-- 单选 -->
               <view class='list' wx:if="{{attribute.type === 1 || attribute.type === 2}}">
                 <view class='two_name' bindtap='selectShow' data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
-                  <text class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}">{{attribute.name}}</text>
+                  <view class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}"><view>{{attribute.name}}<image data-remark="{{attribute.remarks}}" catchtap="showmark" class="wenhao" src="../../img/wenhao@2x.png" mode="widthFix" wx:if="{{attribute.remarks}}"></image></view></view>
+                  
                   <view class="yx {{ attribute.selected ? '' : 'active'}}">
                     <text>{{params[attribute.id].text ? params[attribute.id].text : '不限'}}</text>
                     <image src="../../img/jt.png" mode="widthFix"></image>
@@ -63,7 +68,7 @@
                     <text>不限</text>
                   </view>
                   <view wx:for="{{attribute.option}}" class="{{option.selected ? 'active' : ''}}" wx:for-item="option" wx:for-index="optionIndex" wx:key="id" data-index='{{index}}' data-optionIndex="{{optionIndex}}" data-attrIndex='{{attrIndex}}' data-option='{{option}}'
-                    bindtap="checkChange">
+                    bindtap="selectChange">
                     <text>{{option.key_name}}</text>
                   </view>
                 </view>

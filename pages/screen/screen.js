@@ -7,31 +7,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    flag: 1, // 切换class标志
-    category: [{
-      id: 1,
-      name: "新闻"
-    }, {
+    yList: [],
+    yixuan: [],
+    weixuan: [],
+    showAll: false,
+    wHeight: '',
+    attribute_id: '',
+    phoneList: [], // 电话列表
+    showModal: false,
+    flag: 0, // 切换class标志
+    category: [], // 筛选数据
+    checkColums: [
+      {
+        id: 1,
+        name: '产品名称'
+      },
+      {
         id: 2,
-      name: "开心一笑"
-    }, {
+        name: '资方名称'
+      },
+      {
         id: 3,
-      name: "天气"
-    }, {
-        id: 4,
-      name: "周边"
-    }, {
-        id: 5,
-      name: "黄历查询"
-      }, {
-        id: 6,
-      name: "图片笑话"
-      }, {
-        id: 7,
-      name: "更多"
-    }], // 筛选数据
-    wHeight: 'height: calc(100vh - 70px);',
-    sort: -1,
+        name: '联系方式'
+      }
+    ], // 已选头部
+    checkData: [],
+    sort: '',
     sequence: true,
     option: {},
     FilterData: null,
@@ -41,21 +42,17 @@ Page({
     fruitTypeList: [],
     fruitList: []
   },
-  onLoad: function(opt) {
-
-    app.isLogin(function(auth) {
+  onLoad: function (opt) {
+    app.isLogin(function (auth) {
       // console.log(auth)
     });
-
-    this.getAttribute(opt)
+    // 二期新增功能,调用排序接口
+    this.getSelected()
+    this.getAllData()
+    this.getSortList()
+    // this.getAttribute(opt)
     this.getCover();
     this.getOprogramOption();
-    var FilterData = wx.getStorageSync('Categor_Filter');
-    if (JSON.stringify(FilterData) !== "{}") {
-      this.setData({
-        FilterData: FilterData
-      })
-    }
     this.setData({
       option: opt,
       //
@@ -77,7 +74,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     let query = wx.createSelectorQuery();
     var FilterData = wx.getStorageSync('Categor_Filter');
     if (JSON.stringify(FilterData) !== "{}") {
@@ -92,11 +89,83 @@ Page({
   /*
    * 显示省略的全部内容
    */
-  showContent(e) {
+  showText(e) {
     console.log(e.currentTarget.dataset.text.length)
-    if (e.currentTarget.dataset.text.length >= 15) {
+    if (e.currentTarget.dataset.text.length > 6) {
       app.showModal(e.currentTarget.dataset.text, '')
     }
+  },
+  getAllData() {
+    let params= {}
+    app.requestLoading(config.selectednotUrl, 'get', params, '加载中', res => {
+      if (res.success) {
+      } else {
+        app.showModal(res.error.message)
+      }
+    }, function () {
+      app.error()
+    })
+  },
+  //筛选结果 - 已选
+  getSelected() {
+    var FilterData = wx.getStorageSync('Categor_Filter');
+    var attribute_id = wx.getStorageSync('attribute_ids');
+    let params = { 
+      option_id: FilterData,
+      attribute_id,
+      // attribute_id: this.data.attribute_id,
+      // sort: this.data.sort
+      }
+    app.requestLoading(config.selectUrl, 'get', params, '加载中', res => {
+      if (res.success) {
+        // 每页数据最多显示15列, 后两列数据模糊
+        // let tempArr = []
+        // if (res.result.length > 17) {
+        //   for (let i = 0; i < 17; i++) {
+        //     if (res.result[i]) {
+        //       tempArr.push(res.result[i])
+        //     }
+        //   }
+        //   wx.showModal({
+        //     title: '提示',
+        //     content: '本平台仅展示15列数据',
+        //     showCancel: false,
+        //     confirmText: "我知道了",
+        //     confirmColor: '#f8712d'
+        //   })
+        //   console.log(tempArr)
+        // } else {
+        //   tempArr = res.result
+        // }
+        this.setData({
+          weixuan: res.result.weixuan,
+          yixuan: res.result.yixuan[0].option,
+          yList: res.result.yixuan
+        })
+      } else {
+        app.showModal(res.error.message)
+      }
+    }, function () {
+      app.error()
+    })
+  },
+  // 获取排序列表
+  getSortList() {
+    let params = {}
+    app.requestLoading(config.sortUrl, 'get', params, '加载中', res => {
+      if (res.success) {
+        res.result.unshift(
+          { id: 0, title: "综合排序", attribute_id: '', sort: "" }
+        )
+        this.setData({
+          category: res.result
+        })
+      } else {
+        app.showModal(res.error.message)
+      }
+    }, function () {
+      app.error()
+    })
   },
   /*
    * 获取筛选过产品
@@ -113,29 +182,9 @@ Page({
     }
     app.requestLoading(config.productUrl, 'post', params, '加载中', res => {
       if (res.success) {
-        // let fruitType = {
-        //   name: '空',
-        //   is_sortable: -1
-        // }
-        let _this = this
-        let attributeList = _this.data.attributeStr.split(',')
-        res.result.product.map(
-          item => {
-            item.attribute_option.filter(
-              option => {
-                if (attributeList.indexOf(option.attribute_id.toString()) == -1) {
-                  option.option_values = '无权限'
-                  return option
-                } else {
-                  return option
-                }
-              }
-            )
-          }
-        )
         // 每页数据最多显示15列, 后两列数据模糊
         let tempArr = []
-        if (res.result.product.length > 17) {      
+        if (res.result.product.length > 17) {
           for (let i = 0; i < 17; i++) {
             if (res.result.product[i]) {
               tempArr.push(res.result.product[i])
@@ -159,7 +208,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function() {
+    }, function () {
       app.error()
     })
   },
@@ -173,7 +222,7 @@ Page({
         this.setData({
           cover: res.result
         })
-      } else {}
+      } else { }
     })
   },
   /*
@@ -189,7 +238,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function() {
+    }, function () {
       app.error()
     })
   },
@@ -209,7 +258,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function() {
+    }, function () {
       app.error()
     })
   },
@@ -244,8 +293,27 @@ Page({
   // 顶部过滤方法
   handleSort(e) {
     this.setData({
-      flag: e.currentTarget.dataset.flagindex
+      flag: e.currentTarget.dataset.flagindex,
+      sort: e.currentTarget.dataset.sort,
+      attribute_id: e.currentTarget.dataset.attr
     });
+    this.getSelected()
+  },
+  submit(event) {
+    let phoneList = event.currentTarget.dataset.phone
+    console.log(phoneList)
+    this.setData({
+      showModal: true,
+      phoneList
+    })
+  },
+  preventTouchMove: function () {
+
+  },
+  go: function () {
+    this.setData({
+      showModal: false
+    })
   },
   /*
    * 排序
@@ -260,5 +328,18 @@ Page({
       this.getProduct(this.data.option, sequence)
     }
 
+  },
+  // 拨打电话
+  callHandle(e) {
+    console.log(e.currentTarget.dataset.phone)
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.phone,
+    })
+  },
+  // 展开全部
+  toggleAll() {
+    this.setData({
+      showAll: !this.data.showAll
+    })
   }
 })

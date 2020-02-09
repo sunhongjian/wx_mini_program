@@ -3,5 +3,9 @@
 <view class="news-box">
   <view class="newsCard" wx:for="{{newsList}}" wx:key="id">
     <text class="content">{{item.content}}</text>
+    <view class="news-bot flex-wrp">
+      <text>数据更新人: {{item.name}}</text>
+      <text style="text-align: right">{{item.create_time}}</text>
+    </view>
   </view>
 </view>

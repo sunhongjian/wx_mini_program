@@ -1,0 +1,25 @@
+<!--pages/contact/contact.wxml-->
+<view>
+  <image style="width: 100%" src="../../img/dt@2x.png" mode="widthFix"></image>
+</view>
+<view class="main-text">
+  <view class="item" style="padding-top: 30rpx; padding-bottom: 30rpx;">
+    <image src="../../img/dizhi@2x.png" mode="widthFix"></image>
+    <text>青岛市市北区敦化路138号西王大厦2405室</text>
+    <text style="font-size: 20rpx">2405,XIwang Building,138Dunhua Road,North District，Qingdao.</text>
+  </view>
+  <view class="item">
+    <image src="../../img/dianhua3@2x.png" mode="widthFix"></image>
+    <text>联系热线：0532-68661666</text>
+  </view>
+</view>
+<view class='nav flex-wrp'>
+  <view style="flex: 1" class="nav-item">
+    <view class="flex-wrp">
+      <view class="flex-wrp-center" style="margin-top: -5px">
+        <image class="icon-style" src="../../img/22.jpg" mode="widthFix"></image>
+      </view>
+      <button open-type='contact'>联系我们</button> 
+    </view>
+  </view>
+</view>

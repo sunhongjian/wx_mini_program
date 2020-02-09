@@ -6,68 +6,144 @@
   <!-- 综合排序start -->
   <view class='totle-nav'>
     <scroll-view class='scroll-wrap' scroll-x="true" style='width:100%;'>
-      <text class="{{flag==item.id?'active base-color':''}}" bindtap="handleSort" wx:for="{{category}}" wx:key="index" data-flagindex='{{item.id}}'>{{item.name}}</text>    
+      <text class="{{flag==item.id?'active base-color':''}}" bindtap="handleSort" wx:for="{{category}}" wx:key="index" data-sort='{{item.sort}}' data-attr='{{item.attribute_id}}' data-flagindex='{{item.id}}'>{{item.title}}</text>
     </scroll-view>
-          <view class="dec-image">
-      <image src="../../img/jiangxu@2x.png" mode="widthFix"></image> 
-      </view>
-  </view>
-  <!-- 综合排序End -->
-  <view class='selected' wx:if="{{FilterData != null}}">
-    <text>已选</text>
-    <view>
-      <text wx:for="{{FilterData}}" wx:for-index="key" wx:for-item="value" wx:key="id">{{value.category}} : {{value.value}} |</text>
+    <view class="dec-image">
+      <image src="../../img/jiangxu@2x.png" mode="widthFix"></image>
     </view>
   </view>
-
-
-
-  <view class='result'>
-    <!--<img src="../../../111/微信图片_20190820101106.png"/>-->
-
-    <view class='table' style="{{wHeight}}">
-      <view class='b_head'>{{productContent}}</view>
-      <view class='table_c'>
-        <view class='left'>
-          <!-- <view class='td'>空</view> -->
-          <view class="td" wx:for="{{fruitTypeList}}" wx:key="id" bindtap="cellSort" data-item="{{item}}">
-            <view class="td_type {{item.is_sortable !== -1 && item.id == sort ? 'active': ' '}}">{{item.name}}</view>
-            <!-- <rich-text class="td_type {{item.is_sortable !== -1 && item.id == sort ? 'active': ' '}}">{{item.name}}</rich-text>  -->
-            <view class="td_img" wx:if="{{item.is_sortable !== -1}}">
-              <image wx:if="{{(sort === -1 || item.id !== sort) && item.sequence == 'ASC'}}" src="../../img/wu-shang.png" mode="widthFix" />
-              <image wx:elif="{{(item.is_sortable !== -1 && item.id == sort) && item.sequence == 'ASC'}}" src="../../img/shang.png" mode="widthFix" />
-              <image wx:if="{{(sort === -1 || item.id !== sort) && item.sequence == 'DESC'}}" src="../../img/wu-xia.png" mode="widthFix" />
-              <image wx:if="{{(item.is_sortable !== -1 && item.id == sort) && item.sequence == 'DESC'}}" src="../../img/xia.png" mode="widthFix" />
-            </view>
-
+  <!-- 综合排序End -->
+  <!-- 已选部分Start -->
+  <view class='selected'>
+    <text>已选</text>
+  </view>
+  <view class='table' style="{{wHeight}}">
+    <view class='table_c'>
+      <view class='left'>
+        <view class="td" wx:for="{{checkColums}}" wx:key="id" data-item="{{item}}">
+          <view class="td_type">{{item.name}}</view>
+        </view>
+        <view class="td" wx:for="{{yList}}" wx:key="id" data-item="{{item}}">
+          <view class="td_type">{{item.name}}</view>
+        </view>
+        <view style="height: 60rpx"></view>
+        <view wx:if="{{showAll}}" wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
+          <view class="selected">
+            <text>{{item.name}}</text>
+          </view>
+          <view class="td" wx:for="{{item.attribute}}" wx:key="id">
+            <view class="td_type">{{item.name}}</view>
           </view>
         </view>
-        <scroll-view scroll-x="true" class='right'>
-          <view class='tr' wx:for="{{fruitList}}" wx:for-index="bigindex" wx:key="id">
-            <!-- <view wx:for="{{item.attribute_option}}" wx:for-index="attIndex" wx:for-item="cell" data-bigindex="{{bigindex}}" data-index='{{attIndex}}' data-text="{{cell.option_values}}" wx:key="id" bindtap="showContent" class="td {{cell.option_values == '无权限' ? 'active': ' '}}"><view class="td_type "><text>{{cell.option_values}}</text></view></view> -->
-            <view wx:for="{{item.attribute_option}}" wx:for-item="cell" data-bigindex="{{bigindex}}" wx:key="id" data-text="{{bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' :  cell.option_values}}" bindtap="showContent" class="td {{cell.option_values == '无权限' || (bigindex + 1 >= cover[index+1] && cover[index+1] > 0) ? 'active': '' }}">
-              <view class="td_type">
-                <text wx:if="{{bigindex < 15}}">{{ bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' : cell.option_values}}</text>
-                <text wx:else>
-                本平台只展示15条数据
-                </text>
+      </view>
+      <scroll-view scroll-x="true" class='right'>
+        <view class="tr {{bigindex>14?'mohu':''}}" wx:for="{{yixuan}}" wx:for-item="cell" wx:for-index="bigindex" wx:key="id">
+          <view class="td">
+            <view class="td_type">
+              <text>{{cell.product[0].name}}</text>
+            </view>
+          </view>
+          <view class="td">
+            <view class="td_type">
+              <text>{{cell.product[0].zf_name}}</text>
+            </view>
+          </view>
+          <view class="td">
+            <view data-phone='{{cell.phone}}' bindtap="submit" style="width: 100%" class="flex-wrp-center">
+              <image class="phone-icon" src="../../img/dianhua@2x.png" mode="widthFix"></image>
+            </view>
+          </view>
+        </view>
+        <view wx:for="{{yList}}" wx:key="id" data-item="{{item}}">
+          <view class="td" wx:key="id">
+            <view wx:for="{{item.option}}" style="display:inline-block" wx:for-index="bigindex">
+              <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-text='{{item.option_values}}'>
+                <view>
+                  {{item.option_values}}
+                </view>
+
               </view>
             </view>
           </view>
-        </scroll-view>
-      </view>
-      <view class='tips'>-- END --</view>
-    </view>
+        </view>
+        <view class="zkqb" bindtap="toggleAll">
+         展开全部
+        </view>
+        <view wx:if="{{showAll}}" wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
+          <view class="selected">
+            <text style="opacity: 0">{{item.name}}</text>
+          </view>
+          <view class="td" wx:for="{{item.attribute}}" wx:key="id">
+            <view wx:for="{{item.option}}" wx:for-index="bigindex" style="display:inline-block">
+              <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-text='{{item.option_values}}'>
+                <view>
+                  {{item.option_values}}
+                </view>
 
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
   </view>
+  <!-- 已选部分End -->
 </view>
 
-<view class='nav'>
-  <button bind:tap="navBack" data-url='/pages/result/result?title=result' data-type="navigate" open-type="navigateBack">
-    <image src="../../img/22.jpg" mode="widthFix"></image>
-    <text>联系我们</text>
-  </button>
-  <image src="../../img/shu.png" mode="widthFix" class='shu'></image>
-  <button open-type="contact" bindcontact="handleContact" class='active'>
-    <image src="../../img/11.jpg" mode="widthFix"></image>继续筛选</button>
+<view class='nav flex-wrp'>
+  <navigator url="../contact/contact" open-type="redirect" style="flex: 1" class="nav-item">
+    <view class="flex-wrp">
+      <view class="flex-wrp-center" style="margin-top: -5px">
+        <image class="icon-style" src="../../img/22.jpg" mode="widthFix"></image>
+      </view>
+      <text style="margin-left: 5px">联系我们</text>
+    </view>
+  </navigator>
+  <view>
+    <image style="height: 130rpx" src="../../img/shu.png" mode="aspectFit" class='shu'></image>
+  </view>
+  <navigator url="../result/result?title=result" style="flex: 2" class="nav-item">
+    <view class="flex-wrp">
+      <view class="flex-wrp-center" style="margin-top: -5px">
+        <image class="icon-style" src="../../img/11.jpg" mode="widthFix"></image>
+      </view>
+      <text style="margin-left: 5px">继续筛选</text>
+    </view>
+  </navigator>
+</view>
+<!-- 电话弹出层 -->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+
+<view class="modalDlg flex-wrp-center" wx:if="{{showModal}}">
+  <view class="modalItem">
+    <view class="phoneList">
+      <view class='phoneItem' wx:for="{{phoneList}}" wx:key="id">
+        <view class="flex-wrp">
+          <view class="flex-wrp" style="flex: 1; margin-right: 20rpx">
+            <view style="flex: 1">
+              <view>
+                <text>{{item.company_name}}</text>
+              </view>
+              <view>
+                <text>{{item.duties}}</text>
+              </view>
+            </view>
+            <view style="flex: 1">
+              <view style="text-align: right">
+                <text>{{item.department}}</text>
+              </view>
+              <view style="text-align: right">
+                <text>{{item.name}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="flex-wrp-center" style="width: 80rpx">
+            <image data-phone="{{item.phone}}" bindtap="callHandle" style="width: 64rpx" class="icon-style" src="../../img/dianhua2@2x.png" mode="widthFix"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view bindtap="go" class="button">确定</view>
+  </view>
+  <!-- 电话弹出层 -->
 </view>
