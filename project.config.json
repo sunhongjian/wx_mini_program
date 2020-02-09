@@ -72,7 +72,7 @@
 					"id": 2,
 					"name": "pages/screen/screen",
 					"pathName": "pages/screen/screen",
-					"query": "ids=7,92",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -93,6 +93,7 @@
 					"id": -1,
 					"name": "pages/contact/contact",
 					"pathName": "pages/contact/contact",
+					"query": "",
 					"scene": null
 				}
 			]

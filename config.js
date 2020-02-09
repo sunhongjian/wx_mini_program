@@ -12,12 +12,16 @@ var config = {
   categoryUrl: `https://${host}/api/category/index`,
   // 根据ids查询产品
   productUrl: `https://${host}/api/product/index`,
+  // 已选
+  selectUrl: `https://${host}/api/product/selected`,
+  // 未选
+  selectednotUrl: `https://${host}/api/product/selectednot`,
   // 查询（不）可显示选项ids
   attributeUrl: `https://${host}/api/attribute/index`,
   // 获取遮盖层
   coverUrl: `https://${host}/api/cover`,
   // 筛选ids
-  productFilterUrl: `https://${host}/api/product/filter`,
+  productFilterUrl: `https://${host}/api/product/num`,
   // 登出
   logoutUrl: `https://${host}/api/logout`,
   // 通用接口

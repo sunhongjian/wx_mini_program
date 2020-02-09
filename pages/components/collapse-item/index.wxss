@@ -10,6 +10,8 @@
   font-size: 28rpx;
   color: #666666;
   padding: 18rpx;
+  height: 96rpx;
+  overflow: hidden;
 }
 .i-collapse-item-title {
   flex: 0.4;
@@ -34,6 +36,7 @@
   padding: 20rpx;
   height: 140rpx;
   position: relative;
+  margin: 20rpx;
 }
 
 .i-collapse-item-content {

@@ -19,7 +19,7 @@
       <view class="flex-wrp-center" style="margin-top: -5px">
         <image class="icon-style" src="../../img/22.jpg" mode="widthFix"></image>
       </view>
-      <text style="margin-left: 5px">联系我们</text>
+      <button open-type='contact'>联系我们</button> 
     </view>
   </view>
 </view>

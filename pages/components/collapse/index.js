@@ -16,12 +16,10 @@ Component({
             const allList = this.getRelationNodes('../collapse-item/index');
             allList.forEach((item) => {
                 if (params.name === item.data.name) {
-                    item.setData({
-                        showContent: 'i-collapse-item-show-content'
-                    });
+        
                 } else {
                     item.setData({
-                        showContent: ''
+                      showContent: ''
                     });
                 }
             });

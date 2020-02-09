@@ -50,6 +50,7 @@ App({
 			title: title,
 			content: content,
 			showCancel: false,
+      confirmColor: '#f8712d',
 			success(res) {
 				if (res.confirm) {
 					if (success) {

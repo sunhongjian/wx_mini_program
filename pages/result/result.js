@@ -11,7 +11,7 @@ Page({
     news: [], // 消息数组
     banners: [
     ],
-    activeCol: 'name1', // 默认打开的
+    activeCol: '', // 默认打开的
     minAnimationData: {}, // 左侧滑块动画
     maxAnimationData: {}, // 右侧滑块动画
     startX: {}, // 左侧滑块 开始滑动距离左侧距离
@@ -210,7 +210,7 @@ Page({
   /*
    * 多选选择
    * */
-  selectChange: function (e) {
+  selectChange(e) {
     let data = this.data.nList[e.currentTarget.dataset.index].attribute[e.currentTarget.dataset.attrindex]
     let string = "nList[" + e.currentTarget.dataset.index + "].attribute[" + e.currentTarget.dataset.attrindex + "].option[" + e.currentTarget.dataset.optionindex + "].selected"
     let o = this.data.nList[e.currentTarget.dataset.index].attribute[e.currentTarget.dataset.attrindex].option[e.currentTarget.dataset.optionindex].selected
@@ -226,9 +226,13 @@ Page({
       // 当未选中的时候
       text.push(e.currentTarget.dataset.option.name)
       option_id.push(e.currentTarget.dataset.option.id)
+      let stringTemp = option_id.toString()
+      if (stringTemp.substr(0, 1) == ',') {
+        stringTemp = stringTemp.slice(1, stringTemp.length)
+      }
       this.data.params[data.id] = {
         text: text.toString(),
-        option_id: option_id.toString()
+        option_id: stringTemp
       }
       this.data.SelectData[data.id] = {
         category: data.name,
@@ -247,9 +251,13 @@ Page({
         // 多选选择
         text.splice(text.indexOf(e.currentTarget.dataset.option.name), 1)
         option_id.splice(option_id.indexOf(e.currentTarget.dataset.option.id), 1)
+        let stringTemp = option_id.toString()
+        if (stringTemp.substr(0, 1)== ',') {
+          stringTemp = stringTemp.slice(1, stringTemp.length)
+        }
         this.data.params[data.id] = {
           text: text.toString(),
-          option_id: option_id.toString()
+          option_id: stringTemp
         }
         this.data.SelectData[data.id] = {
           category: data.name,
@@ -305,8 +313,8 @@ Page({
         let data = res.result.filter(it => it.attribute.length > 0)
         data.forEach(n => {
           let temp = ''
-          n.attribute.forEach((child,idx) => {
-            if(idx < 5) {
+          n.attribute.forEach((child, idx) => {
+            if (idx < 5) {
               temp += `${child.name}、`
             } else if (idx == 6) {
               temp += `${child.name}等`
@@ -373,32 +381,39 @@ Page({
   getFilter() {
     let _this = this
     let params = {
-      params: this.data.params,
-      module: this.data.tabIndex
+      option_id: ''
     }
-    this.data.nList.map(it =>
-      it.attribute.map(c => {
-        if (c.type == 5 && !this.data.params[c.id]) {
-          c.option.forEach(o => {
-            // console.log(!c.key_name)
-            if (!o.key_name) {
-              params.params[c.id] = {
-                key_name: o.key_name,
-                option_id: o.id
-              }
-            }
-          })
-        }
-      })
-    )
-    app.request(config.productFilterUrl, 'post', params, res => {
+    let attribute_ids = ""
+    for (let key in this.data.params) {
+      if (this.data.params[key].option_id) {
+        attribute_ids = attribute_ids + key + ','
+        params.option_id = params.option_id + this.data.params[key].option_id + ','
+      }  
+    }
+    attribute_ids = attribute_ids.slice(0, attribute_ids.length - 1)
+    params.option_id = params.option_id.slice(0, params.option_id.length - 1)
+
+    // this.data.nList.map(it =>
+    //   it.attribute.map(c => {
+    //     if (c.type == 5 && !this.data.params[c.id]) {
+    //       c.option.forEach(o => {
+    //         console.log('c', c)
+    //         // console.log(!c.key_name)
+    //         params.option_id += o.option_id+","
+    //       })
+    //     }
+    //   })
+    // )
+    app.request(config.productFilterUrl, 'get', params, res => {
       if (res.success) {
         this.setData({
-          count: res.result.count,
-          ids: res.result.ids
+          count: res.result,
+          // ids: res.result.ids
         })
         wx.removeStorageSync('Categor_Filter')
-        wx.setStorageSync('Categor_Filter', this.data.SelectData)
+        wx.setStorageSync('Categor_Filter', params.option_id)
+        wx.removeStorageSync('attribute_ids')
+        wx.setStorageSync('attribute_ids', attribute_ids)
       } else {
         app.showModal(res.error.message)
       }
@@ -555,7 +570,7 @@ Page({
     console.log(e)
     let id = e.currentTarget.dataset.id
     let type = e.currentTarget.dataset.type
-    if(type == 1) {
+    if (type == 1) {
       wx.navigateTo({
         url: `/pages/banner/banner?id=${id}`
       })

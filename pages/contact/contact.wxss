@@ -36,9 +36,14 @@
   width: 34rpx;
 }
 
-.nav text {
+.nav button {
   font-size: 30rpx;
   color: #f7651b;
+  border: none;
+  background: inherit;
+}
+.nav button:after {
+  content: none
 }
 
 .nav .nav-item {

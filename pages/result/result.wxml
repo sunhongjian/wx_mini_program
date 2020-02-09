@@ -6,7 +6,10 @@
   <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
     <block wx:for="{{banners}}" wx:for-index="index">
       <swiper-item data-id="{{item.id}}" data-type="{{item.type}}" bindtap="goBannerDetail">
-        <image src="{{item.image}}" class="slide-image" mode="aspectFill" />
+       <view class="pos-dingwei">
+       <image style="width: 22rpx"src="../../img/weizhi.png" mode="widthFix" />
+       <text>青岛</text></view>
+        <image style="width: 100%" src="{{item.image}}" class="slide-image" mode="aspectFill" />
       </swiper-item>
     </block>
   </swiper>
@@ -18,6 +21,7 @@
         <block wx:for="{{news}}" wx:for-index="index">
           <swiper-item class="content">
             <text class="text">{{item.content}}</text>
+            <text class="time">{{item.create_time}}</text>
           </swiper-item>
         </block>
       </swiper>
@@ -64,7 +68,7 @@
                     <text>不限</text>
                   </view>
                   <view wx:for="{{attribute.option}}" class="{{option.selected ? 'active' : ''}}" wx:for-item="option" wx:for-index="optionIndex" wx:key="id" data-index='{{index}}' data-optionIndex="{{optionIndex}}" data-attrIndex='{{attrIndex}}' data-option='{{option}}'
-                    bindtap="checkChange">
+                    bindtap="selectChange">
                     <text>{{option.key_name}}</text>
                   </view>
                 </view>

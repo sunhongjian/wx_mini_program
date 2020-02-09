@@ -6,7 +6,7 @@
   <!-- 综合排序start -->
   <view class='totle-nav'>
     <scroll-view class='scroll-wrap' scroll-x="true" style='width:100%;'>
-      <text class="{{flag==item.id?'active base-color':''}}" bindtap="handleSort" wx:for="{{category}}" wx:key="index" data-flagindex='{{item.id}}'>{{item.title}}</text>
+      <text class="{{flag==item.id?'active base-color':''}}" bindtap="handleSort" wx:for="{{category}}" wx:key="index" data-sort='{{item.sort}}' data-attr='{{item.attribute_id}}' data-flagindex='{{item.id}}'>{{item.title}}</text>
     </scroll-view>
     <view class="dec-image">
       <image src="../../img/jiangxu@2x.png" mode="widthFix"></image>
@@ -14,27 +14,73 @@
   </view>
   <!-- 综合排序End -->
   <!-- 已选部分Start -->
-  <view class='selected' wx:if="{{FilterData != null}}">
+  <view class='selected'>
     <text>已选</text>
-    <!-- <view>
-      <text wx:for="{{FilterData}}" wx:for-index="key" wx:for-item="value" wx:key="id">{{value.category}} : {{value.value}} |</text>
-    </view> -->
   </view>
   <view class='table' style="{{wHeight}}">
     <view class='table_c'>
       <view class='left'>
-        <view class="td" wx:for="{{checkColums}}" wx:key="id" bindtap="cellSort" data-item="{{item}}">
+        <view class="td" wx:for="{{checkColums}}" wx:key="id" data-item="{{item}}">
           <view class="td_type">{{item.name}}</view>
+        </view>
+        <view class="td" wx:for="{{yList}}" wx:key="id" data-item="{{item}}">
+          <view class="td_type">{{item.name}}</view>
+        </view>
+        <view style="height: 60rpx"></view>
+        <view wx:if="{{showAll}}" wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
+          <view class="selected">
+            <text>{{item.name}}</text>
+          </view>
+          <view class="td" wx:for="{{item.attribute}}" wx:key="id">
+            <view class="td_type">{{item.name}}</view>
+          </view>
         </view>
       </view>
       <scroll-view scroll-x="true" class='right'>
-        <view class='tr' wx:for="{{fruitList}}" wx:for-index="bigindex" wx:key="id">
-          <view wx:for="{{item.checked}}" wx:for-item="cell" data-bigindex="{{bigindex}}" wx:key="id" class="td">
-            <view data-phone='{{cell.value}}' bindtap="submit" style="width: 100%" class="flex-wrp-center" wx:if="{{cell.id == 3}}">
+        <view class="tr {{bigindex>14?'mohu':''}}" wx:for="{{yixuan}}" wx:for-item="cell" wx:for-index="bigindex" wx:key="id">
+          <view class="td">
+            <view class="td_type">
+              <text>{{cell.product[0].name}}</text>
+            </view>
+          </view>
+          <view class="td">
+            <view class="td_type">
+              <text>{{cell.product[0].zf_name}}</text>
+            </view>
+          </view>
+          <view class="td">
+            <view data-phone='{{cell.phone}}' bindtap="submit" style="width: 100%" class="flex-wrp-center">
               <image class="phone-icon" src="../../img/dianhua@2x.png" mode="widthFix"></image>
             </view>
-            <view class="td_type" wx:else>
-              <text>{{cell.value}}</text>
+          </view>
+        </view>
+        <view wx:for="{{yList}}" wx:key="id" data-item="{{item}}">
+          <view class="td" wx:key="id">
+            <view wx:for="{{item.option}}" style="display:inline-block" wx:for-index="bigindex">
+              <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-text='{{item.option_values}}'>
+                <view>
+                  {{item.option_values}}
+                </view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="zkqb" bindtap="toggleAll">
+         展开全部
+        </view>
+        <view wx:if="{{showAll}}" wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
+          <view class="selected">
+            <text style="opacity: 0">{{item.name}}</text>
+          </view>
+          <view class="td" wx:for="{{item.attribute}}" wx:key="id">
+            <view wx:for="{{item.option}}" wx:for-index="bigindex" style="display:inline-block">
+              <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-text='{{item.option_values}}'>
+                <view>
+                  {{item.option_values}}
+                </view>
+
+              </view>
             </view>
           </view>
         </view>
@@ -42,32 +88,6 @@
     </view>
   </view>
   <!-- 已选部分End -->
-  <view class='result'>
-    <view class='table' style="{{wHeight}}">
-      <view class='table_c'>
-        <view class='left'>
-          <!-- <view class='td'>空</view> -->
-          <view class="td" wx:for="{{fruitTypeList}}" wx:key="id" bindtap="cellSort" data-item="{{item}}">
-            <view class="td_type">{{item.name}}</view>
-          </view>
-        </view>
-        <scroll-view scroll-x="true" class='right'>
-          <view class='tr' wx:for="{{fruitList}}" wx:for-index="bigindex" wx:key="id">
-            <view wx:for="{{item.attribute_option}}" wx:for-item="cell" data-bigindex="{{bigindex}}" wx:key="id" data-text="{{bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' :  cell.option_values}}" bindtap="showContent" class="td {{cell.option_values == '无权限' || (bigindex + 1 >= cover[index+1] && cover[index+1] > 0) ? 'active': '' }}">
-              <view class="td_type">
-                <text wx:if="{{bigindex < 15}}">{{ bigindex + 1 >= cover[index+1] && cover[index+1] > 0 ? '无权限' : cell.option_values}}</text>
-                <text wx:else>
-                本平台只展示15条数据
-                </text>
-              </view>
-            </view>
-          </view>
-        </scroll-view>
-      </view>
-      <view class='tips'>-- END --</view>
-    </view>
-
-  </view>
 </view>
 
 <view class='nav flex-wrp'>
@@ -123,7 +143,7 @@
         </view>
       </view>
     </view>
-     <view bindtap="go" class="button">确定</view>
+    <view bindtap="go" class="button">确定</view>
   </view>
   <!-- 电话弹出层 -->
 </view>
