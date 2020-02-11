@@ -7,9 +7,10 @@
 
 .selected {
   padding: 20rpx;
-  border-bottom: 1px solid #cecfd6;
 }
-
+.border-top {
+  border-top: 1px solid #cecfd6;
+}
 .selected text {
   font-size: 30rpx;
   font-weight: 600;
@@ -308,4 +309,9 @@
   color: #f7651b;
   font-size: 30rpx;
   width: 100%;
+  position: relative;
+}
+.zkqb .abs {
+  position: fixed;
+  left: 45%;
 }

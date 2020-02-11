@@ -20,25 +20,25 @@
   <view class='table' style="{{wHeight}}">
     <view class='table_c'>
       <view class='left'>
-        <view class="td" wx:for="{{checkColums}}" wx:key="id" data-item="{{item}}">
+        <view class="td {{parIndex === 0?'border-top':''}}" wx:for-index="parIndex" wx:for="{{checkColums}}" wx:key="id" data-item="{{item}}">
           <view class="td_type">{{item.name}}</view>
         </view>
         <view class="td" wx:for="{{yList}}" wx:key="id" data-item="{{item}}">
           <view class="td_type">{{item.name}}</view>
         </view>
         <view style="height: 60rpx"></view>
-        <view wx:if="{{showAll}}" wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
+        <view wx:if="{{showAll}}"  wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
           <view class="selected">
             <text>{{item.name}}</text>
           </view>
-          <view class="td" wx:for="{{item.attribute}}" wx:key="id">
+          <view class="td {{parIndex === 0?'border-top':''}}" wx:for-index="parIndex" wx:for="{{item.attribute}}" wx:key="id">
             <view class="td_type">{{item.name}}</view>
           </view>
         </view>
       </view>
       <scroll-view scroll-x="true" class='right'>
         <view class="tr {{bigindex>14?'mohu':''}}" wx:for="{{yixuan}}" wx:for-item="cell" wx:for-index="bigindex" wx:key="id">
-          <view class="td">
+          <view class="td border-top">
             <view class="td_type">
               <text>{{cell.product[0].name}}</text>
             </view>
@@ -67,7 +67,7 @@
           </view>
         </view>
         <view class="zkqb" bindtap="toggleAll">
-          <view>
+          <view class="abs">
             <text wx:if="{{showAll}}">收起</text>
             <text wx:if="{{!showAll}}">展开全部</text>
           </view>
@@ -77,8 +77,8 @@
           <view class="selected">
             <text style="opacity: 0">{{item.name}}</text>
           </view>
-          <view class="td" wx:for="{{item.attribute}}" wx:key="id">
-            <view wx:for="{{item.option}}" wx:for-index="bigindex" style="display:inline-block">
+          <view class="td" wx:for="{{item.attribute}}" wx:key="id" wx:for-index="parIndex">
+            <view wx:for="{{item.option}}" wx:for-index="bigindex" style="display:inline-block" class="{{parIndex === 0?'border-top':''}}">
               <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-text='{{item.option_values}}'>
                 <view>
                   {{item.option_values}}
