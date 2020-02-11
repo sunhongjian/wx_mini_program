@@ -70,4 +70,6 @@
 .abs-icon text {
   font-size: 23rpx;
   color: #F7651B;
+  background: #fff;
+  padding-top: 20rpx;
 }

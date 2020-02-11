@@ -7,6 +7,7 @@
 
 .selected {
   padding: 20rpx;
+  border-bottom: 1px solid #cecfd6;
 }
 
 .selected text {
@@ -58,7 +59,6 @@
 }
 
 .table .left {
-  border-top: 1px solid #cecfd6;
   width: 100px;
 }
 
@@ -107,7 +107,6 @@
 }
 
 .table .right {
-  border-top: 1px solid #cecfd6;
   white-space: nowrap;
   width: calc(100vw - 100px);
   margin-left: -1px;
@@ -168,10 +167,9 @@
   color: #8a8a8a;
 }
 
-.table .right .tr:nth-child(1) .td {
+/* .table .right .tr:nth-child(1) .td {
   border-left: 1px solid #cecfd6;
-}
-
+} */
 /* .table .right .tr .td:nth-child(1){background-color: #e9f1fe;font-size: 28rpx;color: #f8712d; position: absolute;top:0;} */
 
 .result .tips {
@@ -309,4 +307,5 @@
   margin-left: -200rpx;
   color: #f7651b;
   font-size: 30rpx;
+  width: 100%;
 }

@@ -19,7 +19,7 @@
       <view class="flex-wrp-center" style="margin-top: -5px">
         <image class="icon-style" src="../../img/22.jpg" mode="widthFix"></image>
       </view>
-      <button open-type='contact'>联系我们</button> 
+      <button open-type='contact'>在线客服</button> 
     </view>
   </view>
 </view>

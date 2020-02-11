@@ -32,7 +32,11 @@ const wxPromisify = fn => {
     })
   }
 }
+var sub = function (val) {
+  return val.substring(0, 10)
+}
 module.exports = {
   formatTime: formatTime,
-  wxPromisify: wxPromisify
+  wxPromisify: wxPromisify,
+  sub: sub
 }

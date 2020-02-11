@@ -250,7 +250,15 @@ Page({
       } else {
         // 多选选择
         text.splice(text.indexOf(e.currentTarget.dataset.option.name), 1)
-        option_id.splice(option_id.indexOf(e.currentTarget.dataset.option.id), 1)
+        // 初版有问题
+        let delIndex = ''
+        for (let i = 0; i < option_id.length; i++) {
+          if (option_id[i] == e.currentTarget.dataset.option.id) {
+            delIndex = i
+          }
+        }
+        option_id.splice(delIndex, 1)
+        console.log(option_id)
         let stringTemp = option_id.toString()
         if (stringTemp.substr(0, 1)== ',') {
           stringTemp = stringTemp.slice(1, stringTemp.length)
@@ -392,7 +400,7 @@ Page({
     }
     attribute_ids = attribute_ids.slice(0, attribute_ids.length - 1)
     params.option_id = params.option_id.slice(0, params.option_id.length - 1)
-
+    params.attribute_id = attribute_ids
     // this.data.nList.map(it =>
     //   it.attribute.map(c => {
     //     if (c.type == 5 && !this.data.params[c.id]) {

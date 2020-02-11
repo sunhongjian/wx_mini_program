@@ -67,7 +67,11 @@
           </view>
         </view>
         <view class="zkqb" bindtap="toggleAll">
-         展开全部
+          <view>
+            <text wx:if="{{showAll}}">收起</text>
+            <text wx:if="{{!showAll}}">展开全部</text>
+          </view>
+
         </view>
         <view wx:if="{{showAll}}" wx:for="{{weixuan}}" wx:key="id" data-item="{{item}}">
           <view class="selected">
@@ -117,6 +121,7 @@
 <view class="modalDlg flex-wrp-center" wx:if="{{showModal}}">
   <view class="modalItem">
     <view class="phoneList">
+      <view style="margin: 20px; text-align: center" wx:if="{{phoneList.length === 0}}">暂无数据</view>
       <view class='phoneItem' wx:for="{{phoneList}}" wx:key="id">
         <view class="flex-wrp">
           <view class="flex-wrp" style="flex: 1; margin-right: 20rpx">

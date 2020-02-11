@@ -108,15 +108,19 @@ Page({
   },
   //筛选结果 - 已选
   getSelected() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var FilterData = wx.getStorageSync('Categor_Filter');
     var attribute_id = wx.getStorageSync('attribute_ids');
     let params = { 
       option_id: FilterData,
       attribute_id,
-      // attribute_id: this.data.attribute_id,
-      // sort: this.data.sort
+      attribute_ids: this.data.attribute_id,
+      sort: this.data.sort
       }
     app.requestLoading(config.selectUrl, 'get', params, '加载中', res => {
+      wx.hideLoading();
       if (res.success) {
         // 每页数据最多显示15列, 后两列数据模糊
         // let tempArr = []
@@ -304,7 +308,7 @@ Page({
     console.log(phoneList)
     this.setData({
       showModal: true,
-      phoneList
+      phoneList: phoneList ? phoneList : []
     })
   },
   preventTouchMove: function () {
