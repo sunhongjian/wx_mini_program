@@ -2,7 +2,7 @@
 <!-- 登录页面 -->
 <view class='logo'>
 	<image src="../../img/default.jpg" mode="widthFix"></image>
-	<!-- <text>万向数据库</text> -->
+	<!-- <text>银河数据库</text> -->
 	<!-- <view></view> -->
 </view>
 <view class='anniu'>

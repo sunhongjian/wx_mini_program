@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loadingHidden: true,
     yList: [],
     yixuan: [],
     weixuan: [],
@@ -96,9 +97,6 @@ Page({
   },
   //筛选结果 - 已选
   getSelected() {
-    wx.showLoading({
-      title: '加载中',
-    })
     var FilterData = wx.getStorageSync('Categor_Filter');
     var attribute_id = wx.getStorageSync('attribute_ids');
     let params = { 
@@ -107,8 +105,10 @@ Page({
       attribute_ids: this.data.attribute_id,
       sort: this.data.sort
       }
-    app.requestLoading(config.selectUrl, 'get', params, '加载中', res => {
-      wx.hideLoading();
+    app.requestLoading(config.selectUrl, 'get', params, "", res => {
+      this.setData({
+        loadingHidden: false
+      })
       if (res.success) {
         this.setData({
           weixuan: res.result.weixuan,

@@ -20,7 +20,7 @@
       <swiper class="marquee-item" autoplay="true" vertical="true" interval="3000" circular="true">
         <block wx:for="{{news}}" wx:for-index="index">
           <swiper-item class="content">
-            <text class="text">{{item.content}}</text>
+            <text class="text" bindtap="goConDetail">{{item.content}}</text>
             <text class="time">{{item.create_time}}</text>
           </swiper-item>
         </block>

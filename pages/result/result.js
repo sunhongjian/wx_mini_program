@@ -583,5 +583,10 @@ Page({
         url: `/pages/banner/banner?id=${id}`
       })
     }
+  },
+  goConDetail(e) {
+      wx.navigateTo({
+        url: `/pages/news/newsPage`
+      })
   }
 })
