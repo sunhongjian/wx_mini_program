@@ -48,7 +48,6 @@ Page({
     });
     // 二期新增功能,调用排序接口
     this.getSelected()
-    this.getAllData()
     this.getSortList()
     // this.getAttribute(opt)
     this.getCover();
@@ -95,17 +94,6 @@ Page({
       app.showModal(e.currentTarget.dataset.text, '')
     }
   },
-  getAllData() {
-    let params= {}
-    app.requestLoading(config.selectednotUrl, 'get', params, '加载中', res => {
-      if (res.success) {
-      } else {
-        app.showModal(res.error.message)
-      }
-    }, function () {
-      app.error()
-    })
-  },
   //筛选结果 - 已选
   getSelected() {
     wx.showLoading({
@@ -122,25 +110,6 @@ Page({
     app.requestLoading(config.selectUrl, 'get', params, '加载中', res => {
       wx.hideLoading();
       if (res.success) {
-        // 每页数据最多显示15列, 后两列数据模糊
-        // let tempArr = []
-        // if (res.result.length > 17) {
-        //   for (let i = 0; i < 17; i++) {
-        //     if (res.result[i]) {
-        //       tempArr.push(res.result[i])
-        //     }
-        //   }
-        //   wx.showModal({
-        //     title: '提示',
-        //     content: '本平台仅展示15列数据',
-        //     showCancel: false,
-        //     confirmText: "我知道了",
-        //     confirmColor: '#f8712d'
-        //   })
-        //   console.log(tempArr)
-        // } else {
-        //   tempArr = res.result
-        // }
         this.setData({
           weixuan: res.result.weixuan,
           yixuan: res.result.yixuan[0].option,
