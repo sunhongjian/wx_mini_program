@@ -51,12 +51,8 @@ Page({
     this.getSelected()
     this.getSortList()
     // this.getAttribute(opt)
-    this.getCover();
-    this.getOprogramOption();
-    this.setData({
-      option: opt,
-      //
-    })
+    // this.getCover();
+    // this.getOprogramOption();
   },
   /*
    * 设置分享

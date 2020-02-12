@@ -7,16 +7,26 @@
 
 .selected {
   padding: 20rpx;
+  position: relative;
 }
 
 .border-top {
   border-top: 1px solid #cecfd6;
+}
+.border-left {
+  border-left: 1rpx solid #cecfd6;
 }
 
 .selected text {
   font-size: 30rpx;
   font-weight: 600;
   color: #f7651b;
+}
+.selected .more {
+  color: #999999;
+  position: absolute;
+  right: 20rpx;
+  font-weight: inherit;
 }
 
 .selected view {
@@ -70,7 +80,7 @@
   align-items: center;
   height: 80rpx;
   border-bottom: 1px solid #cecfd6;
-  border-right: 1px solid #cecfd6;
+  border-right: 1rpx solid #cecfd6;
   padding: 10px 5px;
   font-size: 28rpx;
   color: #171f2c;
@@ -130,14 +140,16 @@
   border-right: 1px solid #cecfd6;
   padding: 10px 5px;
 }
-
+.tdr-border {
+  border-bottom: 1px solid #cecfd6;
+  border-right: 1px solid #cecfd6;
+}
 .table .right .tdr {
   display: flex;
   width: 200rpx;
   align-items: center;
   height: 80rpx;
-  border-bottom: 1px solid #cecfd6;
-  border-right: 1px solid #cecfd6;
+
   padding: 10px 5px;
 }
 
