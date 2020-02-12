@@ -53,7 +53,7 @@
   position: relative;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  margin-bottom: 60rpx;
+  padding-bottom: 240rpx;
 }
 
 .table .table_c {

@@ -144,9 +144,25 @@ Page({
    * */
   selectShow(e) {
     let string = "nList[" + e.currentTarget.dataset.index + "].attribute[" + e.currentTarget.dataset.attrindex + "].selected"
-    this.setData({
-      [string]: !this.data.nList[e.currentTarget.dataset.index].attribute[e.currentTarget.dataset.attrindex].selected
+    console.log(string)
+    this.data.nList.forEach((n, nIdx) => {
+      console.log(n)
+      n.attribute.forEach((child, cIdx) => {
+        let temp = "nList[" + nIdx + "].attribute[" + cIdx + "].selected"
+        if(e.currentTarget.dataset.index == nIdx && e.currentTarget.dataset.attrindex == cIdx) {
+          console.log(123)
+          this.setData({
+            [temp]: !this.data.nList[e.currentTarget.dataset.index].attribute[e.currentTarget.dataset.attrindex].selected
+          })   
+        } else {
+          this.setData({
+            [temp]: false
+          })      
+        }
+
+      })
     })
+    // 关闭其他选项
   },
   /*
    * 单选点击事件

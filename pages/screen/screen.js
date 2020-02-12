@@ -90,7 +90,9 @@ Page({
    * 显示省略的全部内容
    */
   showText(e) {
-    console.log(e.currentTarget.dataset.text.length)
+    if(e.currentTarget.dataset.index > 14) {
+      app.showModal('本平台只展示15列数据', '')
+    }
     if (e.currentTarget.dataset.text.length > 6) {
       app.showModal(e.currentTarget.dataset.text, '')
     }
@@ -273,6 +275,9 @@ Page({
     this.getSelected()
   },
   submit(event) {
+    if(event.currentTarget.dataset.index > 14) {
+      return false
+    }
     let phoneList = event.currentTarget.dataset.phone
     console.log(phoneList)
     this.setData({
