@@ -9,7 +9,7 @@
     <!--<view class='three'>-->
       <!--<view class='four'>-->
           <!--<image wx:if="userInfo.avata" src="{{userInfo.avatar}}" mode="widthFix"></image>-->
-          <!--<image wx:else src="../../img/default.jpg" mode="widthFix"></image>-->
+          <!--<image wx:else src="../../img/default.jpeg" mode="widthFix"></image>-->
       <!--</view>-->
     <!--</view>-->
   <!--</view>-->
@@ -28,7 +28,7 @@
         </view>
         <view class="photo">
             <image wx:if="userInfo.avata" src="{{userInfo.avatar}}" class="head_photo"></image>
-            <image wx:else src="../../img/default.jpg" class="head_photo" mode="widthFix"></image>
+            <image wx:else src="../../img/default.jpeg" class="head_photo" mode="widthFix"></image>
         </view>
     </view>
     <!-- 个人头像部分end -->

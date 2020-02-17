@@ -64,7 +64,8 @@
                   </view>
                 </view>
                 <view class='option' wx:if="{{attribute.selected}}">
-                  <view class="{{params[attribute.id].option_id ? '' : 'active'}}" bindtap="itemReset" data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
+                  <text wx:if="{{attribute.id == 3 || attribute.id ==25 || attribute.id == 26}}"></text>
+                  <view wx:else class="{{params[attribute.id].option_id ? '' : 'active'}}" bindtap="itemReset" data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
                     <text>不限</text>
                   </view>
                   <view wx:for="{{attribute.option}}" class="{{option.selected ? 'active' : ''}}" wx:for-item="option" wx:for-index="optionIndex" wx:key="id" data-index='{{index}}' data-optionIndex="{{optionIndex}}" data-attrIndex='{{attrIndex}}' data-option='{{option}}'

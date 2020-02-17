@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <!-- 登录页面 -->
 <view class='logo'>
-	<image src="../../img/default.jpg" mode="widthFix"></image>
+	<image src="../../img/default.jpeg" mode="widthFix"></image>
 	<!-- <text>银河数据库</text> -->
 	<!-- <view></view> -->
 </view>

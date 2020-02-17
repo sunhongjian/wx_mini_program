@@ -329,6 +329,22 @@ Page({
    * 获取筛选 项目
    */
   getCategory() {
+    let params = this.data.params
+    params[3] = {
+      text: '一押',
+      option_id: 24
+    }
+    params[26] = {
+      text: '70年普通住宅',
+      option_id: 126
+    }
+    params[25] = {
+      text: '市南',
+      option_id: 111
+    }
+    this.setData({
+      params: params,
+    })
     let _this = this
     app.request(config.categoryUrl, 'get', {
       module: this.data.tabIndex
@@ -336,8 +352,15 @@ Page({
       if (res.success) {
         let data = res.result.filter(it => it.attribute.length > 0)
         data.forEach(n => {
+          // 取消三个条件的默认值
+
           let temp = ''
+          
           n.attribute.forEach((child, idx) => {
+            if(child.id == 3 || child.id == 26 || child.id == 25) {
+              child.option[0].selected = true
+
+            }
             if (idx < 5) {
               temp += `${child.name}、`
             } else if (idx == 6) {
