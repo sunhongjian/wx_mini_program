@@ -36,7 +36,6 @@
   padding: 20rpx;
   height: 140rpx;
   position: relative;
-  margin: 20rpx;
 }
 
 .i-collapse-item-content {

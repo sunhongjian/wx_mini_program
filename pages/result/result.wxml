@@ -42,7 +42,7 @@
   <!-- 折叠菜单 Start -->
   <view class="caption-wrap">
     <i-collapse name="{{activeCol}}" accordion>
-      <view class='one' wx:for="{{nList}}" wx:key="id">
+      <view class='one' wx:for="{{nList}}" wx:key="id" style="background: #fff;">
         <i-collapse-item name="name{{item.id}}" subTitle="{{item.temp}}" title="{{item.name}}" i-class-title="collapse-item-title" i-class-content="collapse-item-content">
           <view slot="content" class='two'>
             <wxs module="m1">
@@ -56,7 +56,7 @@
               <!-- 单选 -->
               <view class='list' wx:if="{{attribute.type === 1 || attribute.type === 2}}">
                 <view class='two_name' bindtap='selectShow' data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
-                  <view class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}"><view>{{attribute.name}}<image data-remark="{{attribute.remarks}}" catchtap="showmark" class="wenhao" src="../../img/wenhao@2x.png" mode="widthFix" wx:if="{{attribute.remarks}}"></image></view></view>
+                  <view class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}"><view style="position: relative;">{{attribute.name}}<image data-remark="{{attribute.remarks}}" catchtap="showmark" class="wenhao" src="../../img/wenhao@2x.png" mode="widthFix" wx:if="{{attribute.remarks}}"></image></view></view>
                   
                   <view class="yx {{ attribute.selected ? '' : 'active'}}">
                     <text>{{params[attribute.id].text ? params[attribute.id].text : '不限'}}</text>
