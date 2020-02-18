@@ -6,6 +6,7 @@
   <!-- 综合排序start -->
   <view class='totle-nav'>
     <scroll-view class='scroll-wrap' scroll-x="true" style='width:100%;'>
+      <text>排序: </text>
       <text class="{{flag==item.id?'active base-color':''}}" bindtap="handleSort" wx:for="{{category}}" wx:key="index" data-sort='{{item.sort}}' data-attr='{{item.attribute_id}}' data-flagindex='{{item.id}}'>{{item.title}}</text>
     </scroll-view>
     <view class="dec-image">

@@ -10,7 +10,7 @@
   </view>
   <view class="item">
     <image src="../../img/dianhua3@2x.png" mode="widthFix"></image>
-    <text>联系热线：0532-68661666</text>
+    <text>联系电话：0532-68661666</text>
   </view>
 </view>
 <view class='nav flex-wrp'>
