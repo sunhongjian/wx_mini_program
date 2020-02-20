@@ -23,7 +23,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.7.7",
 	"appid": "wx6fe9e597d8e938e8",
-	"projectname": "wan",
+	"projectname": "wx_mini_program",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -146,11 +146,9 @@ Page({
     let string = "nList[" + e.currentTarget.dataset.index + "].attribute[" + e.currentTarget.dataset.attrindex + "].selected"
     console.log(string)
     this.data.nList.forEach((n, nIdx) => {
-      console.log(n)
       n.attribute.forEach((child, cIdx) => {
         let temp = "nList[" + nIdx + "].attribute[" + cIdx + "].selected"
         if(e.currentTarget.dataset.index == nIdx && e.currentTarget.dataset.attrindex == cIdx) {
-          console.log(123)
           this.setData({
             [temp]: !this.data.nList[e.currentTarget.dataset.index].attribute[e.currentTarget.dataset.attrindex].selected
           })   
@@ -258,6 +256,7 @@ Page({
 
       if (text.length == 1) {
         // 多选已选中的时候， 取消选择
+       //console.log(260);
         this.data.params[data.id] = {
           text: '不限',
           option_id: ''
@@ -330,18 +329,18 @@ Page({
    */
   getCategory() {
     let params = this.data.params
-    params[3] = {
-      text: '一押',
-      option_id: 24
-    }
-    params[26] = {
-      text: '70年普通住宅',
-      option_id: 126
-    }
-    params[25] = {
-      text: '市南',
-      option_id: 111
-    }
+    // params[3] = {
+    //   text: '一押',
+    //   option_id: 24
+    // }
+    // params[26] = {
+    //   text: '70年普通住宅',
+    //   option_id: 126
+    // }
+    // params[25] = {
+    //   text: '市南',
+    //   option_id: 111
+    // }
     this.setData({
       params: params,
     })
@@ -427,19 +426,21 @@ Page({
    */
   getFilter() {
     let _this = this
-    let params = {
-      option_id: ''
+    let request_data= {
+      module: this.data.tabIndex,
+      params: this.data.params,
+      //ids:this.data.ids
     }
-    let attribute_ids = ""
-    for (let key in this.data.params) {
-      if (this.data.params[key].option_id) {
-        attribute_ids = attribute_ids + key + ','
-        params.option_id = params.option_id + this.data.params[key].option_id + ','
-      }  
-    }
-    attribute_ids = attribute_ids.slice(0, attribute_ids.length - 1)
-    params.option_id = params.option_id.slice(0, params.option_id.length - 1)
-    params.attribute_id = attribute_ids
+    // let attribute_ids = ""
+    // for (let key in this.data.params) {
+    //   if (this.data.params[key].option_id) {
+    //     attribute_ids = attribute_ids + key + ','
+    //     params.option_id = params.option_id + this.data.params[key].option_id + ','
+    //   }  
+    // }
+    //  attribute_ids = attribute_ids.slice(0, attribute_ids.length - 1)
+     //params.option_id = params.option_id.slice(0, params.option_id.length - 1)
+    // params.attribute_id = attribute_ids
     // this.data.nList.map(it =>
     //   it.attribute.map(c => {
     //     if (c.type == 5 && !this.data.params[c.id]) {
@@ -451,16 +452,21 @@ Page({
     //     }
     //   })
     // )
-    app.request(config.productFilterUrl, 'get', params, res => {
+    app.request(config.productFilterUrl, 'get', request_data, res => {
       if (res.success) {
         this.setData({
-          count: res.result,
-          // ids: res.result.ids
+          count: res.result.count,
+           ids: res.result.ids
         })
-        wx.removeStorageSync('Categor_Filter')
-        wx.setStorageSync('Categor_Filter', params.option_id)
-        wx.removeStorageSync('attribute_ids')
-        wx.setStorageSync('attribute_ids', attribute_ids)
+
+        request_data['ids']=res.result.ids;
+        //存储筛选条件
+        wx.removeStorageSync('Params_Filter')
+        wx.setStorageSync('Params_Filter', request_data)
+        // wx.removeStorageSync('Categor_Filter')
+        // wx.setStorageSync('Categor_Filter', params.option_id)
+        // wx.removeStorageSync('attribute_ids')
+        // wx.setStorageSync('attribute_ids', attribute_ids)
       } else {
         app.showModal(res.error.message)
       }
@@ -507,7 +513,8 @@ Page({
       params: {},
       requiredList: [],
       allRequiredList: [],
-      SelectData: {}
+      SelectData: {},
+      ids:''
     })
   },
 

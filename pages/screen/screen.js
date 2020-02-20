@@ -41,12 +41,17 @@ Page({
     cover: '',
     productContent: '',
     fruitTypeList: [],
-    fruitList: []
+    fruitList: [],
+    product_ids:''
   },
   onLoad: function (opt) {
     app.isLogin(function (auth) {
-      // console.log(auth)
+       //console.log(auth)
     });
+
+    this.setData({
+      product_ids: opt.ids
+    })
     // 二期新增功能,调用排序接口
     this.getSelected()
     this.getSortList()
@@ -95,15 +100,17 @@ Page({
   },
   //筛选结果 - 已选
   getSelected() {
-    var FilterData = wx.getStorageSync('Categor_Filter');
-    var attribute_id = wx.getStorageSync('attribute_ids');
-    let params = { 
-      option_id: FilterData,
-      attribute_id,
-      attribute_ids: this.data.attribute_id,
-      sort: this.data.sort
-      }
-    app.requestLoading(config.selectUrl, 'get', params, "", res => {
+    var Params_Filter = wx.getStorageSync('Params_Filter');
+
+    console.log(Params_Filter)
+    // var attribute_id = wx.getStorageSync('attribute_ids');
+    // let params = { 
+    //   params: Params_Filter,
+    //   product_ids:"7,8",
+    //   attribute_ids: this.data.attribute_id,
+    //   sort: this.data.sort
+    //   }
+    app.requestLoading(config.selectUrl, 'get', Params_Filter, "", res => {
       this.setData({
         loadingHidden: false
       })
