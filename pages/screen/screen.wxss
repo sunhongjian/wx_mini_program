@@ -1,8 +1,45 @@
-/* pages/screen/screen.wxss */
-
-.body {
+.my_page {
   height: 100vh;
-  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  padding: 130rpx 0 130rpx;
+}
+
+.my_header {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 130rpx;
+  background: #fff;
+  z-index: 666;
+}
+
+.my_header .selected {
+  padding: 0 20rpx;
+  height: 70rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my_section {
+  width: 100%;
+  height: 100%;
+}
+
+.my_section scroll-view{
+  height: 100%;
+}
+
+.my_footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 130rpx;
+  background: #fff;
+  z-index: 666;
 }
 
 .selected {
@@ -13,8 +50,21 @@
 .border-top {
   border-top: 1px solid #cecfd6;
 }
+
 .border-left {
   border-left: 1rpx solid #cecfd6;
+}
+
+.selected {
+  position: relative;
+}
+
+#biao_zhi {
+  position: absolute;
+  bottom: -100rpx;
+  left: 0;
+  width: 100%;
+  height: 1px;
 }
 
 .selected text {
@@ -22,8 +72,9 @@
   font-weight: 600;
   color: #f7651b;
 }
+
 .selected .more {
-  color: #999999;
+  color: #999;
   position: absolute;
   right: 20rpx;
   font-weight: inherit;
@@ -61,18 +112,25 @@
 .table {
   border-left: 1px solid #dadada;
   position: relative;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 340rpx;
+  /* overflow-y: scroll; */
+  /* -webkit-overflow-scrolling: touch; */
+  /* padding-bottom: 340rpx; */
 }
 
 .table .table_c {
   display: flex;
   width: 100%;
+  padding-bottom: 130rpx;
 }
 
 .table .left {
-  width: 100px;
+  width: 90px;
+}
+
+.table .left .td:first-child {
+  position: relative;
+  z-index: 66;
+  transition: all 0s;
 }
 
 .table .left .td {
@@ -140,16 +198,25 @@
   border-right: 1px solid #cecfd6;
   padding: 10px 5px;
 }
+
+.table .right .tr .td:first-child {
+  position: relative;
+  z-index: 66;
+  background: #fff;
+  /* position: absolute; */
+  /* top: 0; */
+}
+
 .tdr-border {
   border-bottom: 1px solid #cecfd6;
   border-right: 1px solid #cecfd6;
 }
+
 .table .right .tdr {
   display: flex;
   width: 200rpx;
   align-items: center;
   height: 80rpx;
-
   padding: 10px 5px;
 }
 
@@ -300,8 +367,10 @@
 }
 .zksq-icon {
   width: 30rpx;
+  margin-left: 10rpx;
   vertical-align: middle;
 }
+
 
 .phoneItem {
   padding: 10rpx;
@@ -549,6 +618,7 @@
     -webkit-transform: translate(-65px, 0);
   }
 }
+
 @keyframes object_eight {
   50% {
     transform: translate(-65px, 0);

@@ -16,6 +16,9 @@
   <!-- 首页轮播图 End -->
   <!-- 数据滚动 Start -->
   <view class="flex-wrp marquee">
+    <view class="sjgx">
+      <image src="../../img/sjgx.png" mode="widthFix"></image>
+    </view>
     <view class="marquee-left">
       <swiper class="marquee-item" autoplay="true" vertical="true" interval="3000" circular="true">
         <block wx:for="{{news}}" wx:for-index="index">

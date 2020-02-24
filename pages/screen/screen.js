@@ -18,8 +18,7 @@ Page({
     showModal: false,
     flag: 0, // 切换class标志
     category: [], // 筛选数据
-    checkColums: [
-      {
+    checkColums: [{
         id: 1,
         name: '产品名称'
       },
@@ -42,16 +41,16 @@ Page({
     productContent: '',
     fruitTypeList: [],
     fruitList: [],
-    product_ids:''
-  },
-  onLoad: function (opt) {
-    app.isLogin(function (auth) {
-       //console.log(auth)
-    });
 
-    this.setData({
-      product_ids: opt.ids
-    })
+    // 当前的名称
+    dq_name: "已选",
+    // 滚动条的高度
+    scrollTop:0,
+  },
+  onLoad: function(opt) {
+    app.isLogin(function(auth) {
+      // console.log(auth)
+    });
     // 二期新增功能,调用排序接口
     this.getSelected()
     this.getSortList()
@@ -75,7 +74,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     let query = wx.createSelectorQuery();
     var FilterData = wx.getStorageSync('Categor_Filter');
     if (JSON.stringify(FilterData) !== "{}") {
@@ -87,11 +86,17 @@ Page({
       }).exec()
     }
   },
+  // 滚动时执行
+  scroll_change_fun(e) {
+    this.setData({
+      scrollTop: e.detail.scrollTop
+    })
+  },
   /*
    * 显示省略的全部内容
    */
   showText(e) {
-    if(e.currentTarget.dataset.index > 14) {
+    if (e.currentTarget.dataset.index > 14) {
       app.showModal('本平台只展示15列数据', '')
     }
     if (e.currentTarget.dataset.text.length > 6) {
@@ -101,15 +106,13 @@ Page({
   //筛选结果 - 已选
   getSelected() {
     var Params_Filter = wx.getStorageSync('Params_Filter');
-
-    console.log(Params_Filter)
     // var attribute_id = wx.getStorageSync('attribute_ids');
-    // let params = { 
-    //   params: Params_Filter,
-    //   product_ids:"7,8",
+    // let params = {
+    //   option_id: FilterData,
+    //   attribute_id,
     //   attribute_ids: this.data.attribute_id,
     //   sort: this.data.sort
-    //   }
+    // }
     app.requestLoading(config.selectUrl, 'get', Params_Filter, "", res => {
       this.setData({
         loadingHidden: false
@@ -120,10 +123,36 @@ Page({
           yixuan: res.result.yixuan[0].option,
           yList: res.result.yixuan
         })
+        // 当li与title相交时触发
+        wx.createIntersectionObserver(this).relativeTo('#biao_zhi').observe("#yi_xuan", (res) => {
+          if (res.intersectionRatio != 0) {
+            // 更新数据
+            this.setData({
+              dq_name: "已选"
+            })
+          }
+        })
+
+        for (var i = 0; i < this.data.weixuan.length; ++i) {
+          // li的id
+          let li_id = "#li-" + i;
+          // 当li与title相交时触发
+          wx.createIntersectionObserver(this).relativeTo('#biao_zhi').observe(li_id, (res) => {
+            if (res.intersectionRatio != 0) {
+              // 获取li的下标
+              let index = res.id.split("-")[1];
+              let dq_name = this.data.weixuan[index].name;
+              // 更新数据
+              this.setData({
+                dq_name: dq_name
+              })
+            }
+          })
+        }
       } else {
         app.showModal(res.error.message)
       }
-    }, function () {
+    }, function() {
       app.error()
     })
   },
@@ -132,16 +161,19 @@ Page({
     let params = {}
     app.requestLoading(config.sortUrl, 'get', params, '加载中', res => {
       if (res.success) {
-        res.result.unshift(
-          { id: 0, title: "综合排序", attribute_id: '', sort: "" }
-        )
+        res.result.unshift({
+          id: 0,
+          title: "综合排序",
+          attribute_id: '',
+          sort: ""
+        })
         this.setData({
           category: res.result
         })
       } else {
         app.showModal(res.error.message)
       }
-    }, function () {
+    }, function() {
       app.error()
     })
   },
@@ -186,7 +218,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function () {
+    }, function() {
       app.error()
     })
   },
@@ -200,7 +232,7 @@ Page({
         this.setData({
           cover: res.result
         })
-      } else { }
+      } else {}
     })
   },
   /*
@@ -216,7 +248,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function () {
+    }, function() {
       app.error()
     })
   },
@@ -236,7 +268,7 @@ Page({
       } else {
         app.showModal(res.error.message)
       }
-    }, function () {
+    }, function() {
       app.error()
     })
   },
@@ -278,7 +310,7 @@ Page({
     this.getSelected()
   },
   submit(event) {
-    if(event.currentTarget.dataset.index > 14) {
+    if (event.currentTarget.dataset.index > 14) {
       return false
     }
     let phoneList = event.currentTarget.dataset.phone
@@ -288,10 +320,10 @@ Page({
       phoneList: phoneList ? phoneList : []
     })
   },
-  preventTouchMove: function () {
+  preventTouchMove: function() {
 
   },
-  go: function () {
+  go: function() {
     this.setData({
       showModal: false
     })

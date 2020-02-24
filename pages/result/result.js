@@ -232,7 +232,11 @@ Page({
     let option_id = []
     let text = []
     if (this.data.params[data.id]) {
-      option_id = this.data.params[data.id].option_id.split(',')
+      if(isNaN(this.data.params[data.id].option_id)) {
+        option_id = this.data.params[data.id].option_id.split(',')
+      } else {
+        option_id.push(this.data.params[data.id].option_id)
+      }
       text = this.data.params[data.id].text.split(',')
     }
     let t = ''
@@ -328,7 +332,8 @@ Page({
    * 获取筛选 项目
    */
   getCategory() {
-    let params = this.data.params
+    let Params_Filter =  wx.getStorageSync('Params_Filter')
+    let params = Params_Filter.params
     params[3] = {
       text: '一押',
       option_id: 24
@@ -356,9 +361,23 @@ Page({
           let temp = ''
           
           n.attribute.forEach((child, idx) => {
-            if(child.id == 3 || child.id == 26 || child.id == 25) {
-              child.option[0].selected = true
-
+            for (const key in params) {
+              if(key == child.id) {
+                let array = []
+                if(isNaN(params[key].option_id)) {
+                  array = params[key].option_id.split(",");
+                } else {
+                  array.push(params[key].option_id)
+                }
+                
+                array.forEach(arrItem => {
+                  child.option.forEach(opt => {
+                    if(opt.id == arrItem) {
+                      opt.selected = true
+                    }
+                  })
+                })
+              }
             }
             if (idx < 5) {
               temp += `${child.name}、`

@@ -15,7 +15,7 @@
   color: #fff;
   position: absolute;
   top: 20rpx;
-  left: 20rpx;
+  right: 20rpx;
   z-index: 999;
   font-size: 28rpx;
 }
@@ -257,7 +257,7 @@
 
 /* 跑马灯样式 */
 .marquee {
-  background-color: #F6F6F6;
+  background-color: #fff;
 }
 .marquee .marquee-item {
   height: 86rpx;
@@ -267,6 +267,13 @@
 }
 .marquee-left {
   flex: 1;
+}
+.sjgx {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.sjgx image {
+  width: 100rpx;
 }
 .marquee-right {
   width: 100rpx;
@@ -294,5 +301,4 @@
   position: absolute;
   right: 0rpx;
   bottom: 0rpx;
-  background-color: #F6F6F6;
 }
