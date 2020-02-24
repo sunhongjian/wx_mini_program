@@ -298,6 +298,10 @@
 .phone-icon {
   width: 40rpx;
 }
+.zksq-icon {
+  width: 30rpx;
+  vertical-align: middle;
+}
 
 .phoneItem {
   padding: 10rpx;

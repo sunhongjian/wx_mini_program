@@ -70,8 +70,12 @@
         </view>
         <view class="zkqb" bindtap="toggleAll">
           <view class="abs">
-            <text wx:if="{{showAll}}">收起</text>
-            <text wx:if="{{!showAll}}">展开全部</text>
+            <view wx:if="{{showAll}}">
+              <view>收起<image class="zksq-icon" src="../../img/leftMenu2@2x.png" mode="widthFix"></image></view>          
+            </view>
+            <view wx:if="{{!showAll}}">
+              <view>展开全部 <image class="zksq-icon" src="../../img/leftMenu@2x.png" mode="widthFix"></image></view>         
+            </view>
           </view>
 
         </view>
@@ -100,9 +104,9 @@
   <navigator url="../contact/contact" open-type="redirect" style="flex: 1" class="nav-item">
     <view class="flex-wrp">
       <view class="flex-wrp-center" style="margin-top: -5px">
-        <image class="icon-style" src="../../img/22.jpg" mode="widthFix"></image>
+        <image class="icon-style" src="../../img/ren@2x.png" mode="widthFix"></image>
       </view>
-      <text style="margin-left: 5px">联系我们</text>
+      <text style="margin-left: 5px; color: #333333">联系我们</text>
     </view>
   </navigator>
   <view>

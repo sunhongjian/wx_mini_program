@@ -329,18 +329,18 @@ Page({
    */
   getCategory() {
     let params = this.data.params
-    // params[3] = {
-    //   text: '一押',
-    //   option_id: 24
-    // }
-    // params[26] = {
-    //   text: '70年普通住宅',
-    //   option_id: 126
-    // }
-    // params[25] = {
-    //   text: '市南',
-    //   option_id: 111
-    // }
+    params[3] = {
+      text: '一押',
+      option_id: 24
+    }
+    params[26] = {
+      text: '70年普通住宅',
+      option_id: 126
+    }
+    params[25] = {
+      text: '市南',
+      option_id: 111
+    }
     this.setData({
       params: params,
     })
