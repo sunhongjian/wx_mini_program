@@ -109,6 +109,8 @@ Page({
     //   attribute_ids: this.data.attribute_id,
     //   sort: this.data.sort
     // }
+    Params_Filter.sort = this.data.sort
+    Params_Filter.attribute_id = this.data.attribute_id
     app.requestLoading(config.selectUrl, 'get', Params_Filter, "", res => {
       this.setData({
         loadingHidden: false
