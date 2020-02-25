@@ -333,7 +333,7 @@ Page({
    */
   getCategory() {
     let Params_Filter =  wx.getStorageSync('Params_Filter')
-    let params = Params_Filter.params
+    let params = Params_Filter.params ? Params_Filter.params : {}
     params[3] = {
       text: '一押',
       option_id: 24
