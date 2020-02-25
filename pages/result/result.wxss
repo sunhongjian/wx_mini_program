@@ -11,6 +11,11 @@
 .swiper-item {
    position: relative;
 }
+.pos-dingwei-lay {
+  width: 100%;
+  height: 200rpx;
+  position: absolute;
+}
 .pos-dingwei {
   color: #fff;
   position: absolute;

@@ -6,9 +6,6 @@
         <text>排序: </text>
         <text class="{{flag==item.id?'active base-color':''}}" bindtap="handleSort" wx:for="{{category}}" wx:key="index" data-sort='{{item.sort}}' data-attr='{{item.attribute_id}}' data-flagindex='{{item.id}}'>{{item.title}}</text>
       </scroll-view>
-      <view class="dec-image">
-        <image src="../../img/jiangxu@2x.png" mode="widthFix"></image>
-      </view>
     </view>
     <!-- 综合排序End -->
     <!-- 已选部分Start -->
@@ -36,6 +33,9 @@
             <view class="td" wx:for="{{yList}}" wx:key="id" wx:for-index="yListIndex" data-item="{{item}}">
               <view class="td_type">{{item.name}}</view>
             </view>
+            <view class="td">
+                <view class="td_type">联系方式</view>
+              </view>
             <view style="height: 60rpx" id="yi_xuan"></view>
             <view hidden="{{!showAll}}" id="li-{{li_index}}" wx:for="{{weixuan}}" wx:for-index="li_index" wx:key="id" data-item="{{item}}">
               <view class="selected">
@@ -58,11 +58,6 @@
                   <text class="{{bigindex>14?'mohu':''}}">{{cell.product[0].zf_name}}</text>
                 </view>
               </view>
-              <view class="td" bindtap="showText" data-index='{{bigindex}}' data-text=''>
-                <view data-phone='{{cell.phone}}' bindtap="submit" data-index='{{bigindex}}' style="width: 100%" class="flex-wrp-center {{bigindex>14?'mohu':''}}">
-                  <image class="phone-icon" src="../../img/dianhua@2x.png" mode="widthFix"></image>
-                </view>
-              </view>
             </view>
             <view wx:for="{{yList}}" wx:key="id" wx:for-item="item">
               <view class="td" wx:key="id">
@@ -73,6 +68,13 @@
                     </view>
 
                   </view>
+                </view>
+              </view>
+            </view>
+            <view class="tr {{bigindex === 0?'border-left':''}}" wx:for="{{yixuan}}" wx:for-item="cell" wx:for-index="bigindex" wx:key="id">
+              <view class="td" bindtap="showText" data-index='{{bigindex}}' data-text=''>
+                <view data-phone='{{cell.phone}}' bindtap="submit" data-index='{{bigindex}}' style="width: 100%" class="flex-wrp-center {{bigindex>14?'mohu':''}}">
+                  <image class="phone-icon" src="../../img/dianhua@2x.png" mode="widthFix"></image>
                 </view>
               </view>
             </view>

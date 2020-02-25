@@ -2,13 +2,15 @@
 <!-- 筛选结果页面 -->
 <view class="neirong">
   <!-- 首页轮播图 Start-->
-
+  <view class="pos-dingwei-lay">
+    <view class="pos-dingwei">
+      <image style="width: 22rpx" src="../../img/weizhi.png" mode="widthFix" />
+      <text>青岛</text>
+    </view>
+  </view>
   <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
     <block wx:for="{{banners}}" wx:for-index="index">
       <swiper-item data-id="{{item.id}}" data-type="{{item.type}}" bindtap="goBannerDetail">
-       <view class="pos-dingwei">
-       <image style="width: 22rpx"src="../../img/weizhi.png" mode="widthFix" />
-       <text>青岛</text></view>
         <image style="width: 100%" src="{{item.image}}" class="slide-image" mode="aspectFill" />
       </swiper-item>
     </block>
@@ -28,11 +30,6 @@
           </swiper-item>
         </block>
       </swiper>
-    </view>
-    <view class="marquee-right">
-      <view class="marquee-right-item">
-        <navigator url="../news/newsPage">更多</navigator>
-      </view>
     </view>
   </view>
   <!-- 数据滚动 End -->
@@ -59,8 +56,12 @@
               <!-- 单选 -->
               <view class='list' wx:if="{{attribute.type === 1 || attribute.type === 2}}">
                 <view class='two_name' bindtap='selectShow' data-index='{{index}}' data-attrIndex='{{attrIndex}}'>
-                  <view class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}"><view style="position: relative;">{{attribute.name}}<image data-remark="{{attribute.remarks}}" catchtap="showmark" class="wenhao" src="../../img/wenhao@2x.png" mode="widthFix" wx:if="{{attribute.remarks}}"></image></view></view>
-                  
+                  <view class='two_name' style="color: {{m1.fn(requiredList, attribute.id) != -1 ? 'red' : ''}}">
+                    <view style="position: relative;">{{attribute.name}}
+                      <image data-remark="{{attribute.remarks}}" catchtap="showmark" class="wenhao" src="../../img/wenhao@2x.png" mode="widthFix" wx:if="{{attribute.remarks}}"></image>
+                    </view>
+                  </view>
+
                   <view class="yx {{ attribute.selected ? '' : 'active'}}">
                     <text>{{params[attribute.id].text ? params[attribute.id].text : '不限'}}</text>
                     <image src="../../img/jt.png" mode="widthFix"></image>
@@ -128,7 +129,7 @@
 
     </i-collapse>
   </view>
-   <!-- 折叠菜单 End -->
+  <!-- 折叠菜单 End -->
 </view>
 
 

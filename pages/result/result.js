@@ -241,7 +241,11 @@ Page({
     }
     let t = ''
     if (o) {
+      console.log('length', text)
       // 当未选中的时候
+      if (text.length == 1 && text[0] == "不限") {
+        text = []
+      }
       text.push(e.currentTarget.dataset.option.name)
       option_id.push(e.currentTarget.dataset.option.id)
       let stringTemp = option_id.toString()
@@ -526,8 +530,8 @@ Page({
   /*
    * 重置筛选项
    */
-  ResetFilter() {
-    this.getCategory()
+  ResetFilter() {  
+    wx.removeStorageSync('Params_Filter')
     this.setData({
       params: {},
       requiredList: [],
@@ -535,6 +539,7 @@ Page({
       SelectData: {},
       ids:''
     })
+    this.getCategory()
   },
 
   /*
