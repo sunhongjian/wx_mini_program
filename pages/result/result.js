@@ -338,15 +338,15 @@ Page({
   getCategory() {
     let Params_Filter =  wx.getStorageSync('Params_Filter')
     let params = Params_Filter.params ? Params_Filter.params : {}
-    params[3] = {
+    params[3] = params[3] ? params[3] : {
       text: '一押',
       option_id: 24
     }
-    params[26] = {
+    params[26] = params[26] ? params[26] : {
       text: '70年普通住宅',
       option_id: 126
     }
-    params[25] = {
+    params[25] = params[25] ? params[25] : {
       text: '市南',
       option_id: 111
     }
