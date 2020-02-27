@@ -50,19 +50,19 @@
             <view class="tr {{bigindex === 0?'border-left':''}}" wx:for="{{yixuan}}" wx:for-item="cell" wx:for-index="bigindex" wx:key="id">
               <view class="td border-top" style="transform:translateY({{scrollTop}}px)" bindtap="showText" data-index='{{bigindex}}' data-text='{{cell.product[0].name}}'>
                 <view class="td_type">
-                  <text class="{{bigindex>14?'mohu':''}}">{{cell.product[0].name}}</text>
+                  <text>{{cell.product[0].name}}</text>
                 </view>
               </view>
               <view class="td" bindtap="showText" data-index='{{bigindex}}' data-text='{{cell.product[0].zf_name}}'>
                 <view class="td_type">
-                  <text class="{{bigindex>14?'mohu':''}}">{{cell.product[0].zf_name}}</text>
+                  <text>{{cell.product[0].zf_name}}</text>
                 </view>
               </view>
             </view>
             <view wx:for="{{yList}}" wx:key="id" wx:for-item="item">
               <view class="td" wx:key="id">
                 <view class="tdr-border {{bigindex === 0?'border-left':''}}" wx:for="{{item.option}}" style="display:inline-block" wx:for-index="bigindex">
-                  <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-text='{{item.option_values}}'>
+                  <view class="tdr" bindtap="showText" data-text='{{item.option_values}}'>
                     <view>
                       {{item.option_values}}
                     </view>
@@ -73,7 +73,7 @@
             </view>
             <view class="tr {{bigindex === 0?'border-left':''}}" wx:for="{{yixuan}}" wx:for-item="cell" wx:for-index="bigindex" wx:key="id">
               <view class="td" bindtap="showText" data-index='{{bigindex}}' data-text=''>
-                <view data-phone='{{cell.phone}}' bindtap="submit" data-index='{{bigindex}}' style="width: 100%" class="flex-wrp-center {{bigindex>14?'mohu':''}}">
+                <view data-phone='{{cell.phone}}' bindtap="submit" data-index='{{bigindex}}' style="width: 100%" class="flex-wrp-center">
                   <image class="phone-icon" src="../../img/dianhua@2x.png" mode="widthFix"></image>
                 </view>
               </view>
@@ -94,7 +94,7 @@
               </view>
               <view class="td" wx:for="{{item.attribute}}" wx:key="id" wx:for-index="parIndex">
                 <view class="tdr-border {{parIndex === 0?'border-top':''}} {{bigindex === 0?'border-left':''}}" wx:for="{{item.option}}" wx:for-index="bigindex" style="display:inline-block">
-                  <view class="tdr {{bigindex>14?'mohu':''}}" bindtap="showText" data-index='{{bigindex}}' data-text='{{item.option_values}}'>
+                  <view class="tdr" bindtap="showText" data-index='{{bigindex}}' data-text='{{item.option_values}}'>
                     <view>
                       {{item.option_values}}
                     </view>
