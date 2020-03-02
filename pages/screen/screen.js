@@ -92,9 +92,6 @@ Page({
    * 显示省略的全部内容
    */
   showText(e) {
-    if (e.currentTarget.dataset.index > 14) {
-      app.showModal('本平台只展示15列数据', '')
-    }
     if (e.currentTarget.dataset.text.length > 6) {
       app.showModal(e.currentTarget.dataset.text, '')
     }
@@ -198,14 +195,6 @@ Page({
               tempArr.push(res.result.product[i])
             }
           }
-          wx.showModal({
-            title: '提示',
-            content: '本平台仅展示15列数据',
-            showCancel: false,
-            confirmText: "我知道了",
-            confirmColor: '#f8712d'
-          })
-          console.log(tempArr)
         } else {
           tempArr = res.result.product
         }
