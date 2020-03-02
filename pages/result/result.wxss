@@ -1,7 +1,6 @@
 /* pages/result/result.wxss */
 
 .neirong {
-  padding-bottom: 60px;
   background: #F0F0F0;
 }
 .swiper {

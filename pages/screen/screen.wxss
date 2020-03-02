@@ -143,6 +143,7 @@
   font-size: 28rpx;
   color: #171f2c;
   background: #f6f6f6;
+  text-align: center;
 }
 
 /* .table .left .td:nth-child(1){color:#fff;} */
@@ -225,6 +226,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   display: block;
+  font-size: 28rpx;
 }
 
 .table .right .td .td_type {

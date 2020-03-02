@@ -40,7 +40,8 @@
   </view>
   <!-- Tab菜单 End -->
   <!-- 折叠菜单 Start -->
-  <view class="caption-wrap">
+  <view style="background: #fff; padding: 20px" wx:if="{{tabIndex == 2}}">敬请期待</view>
+  <view class="caption-wrap"  wx:if="{{tabIndex == 1}}">
     <i-collapse name="{{activeCol}}" accordion>
       <view class='one' wx:for="{{nList}}" wx:key="id" style="background: #fff;">
         <i-collapse-item name="name{{item.id}}" subTitle="{{item.temp}}" title="{{item.name}}" i-class-title="collapse-item-title" i-class-content="collapse-item-content">
